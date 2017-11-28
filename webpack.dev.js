@@ -34,6 +34,9 @@ module.exports = {
             }
         ]
     },
+    externals: {
+        jquery: "window.jQuery" //如果要全局引用jQuery，不管你的jQuery有没有支持模块化，用externals就对了。
+    },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
