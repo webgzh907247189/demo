@@ -2,7 +2,7 @@
  * 添加支持es3的配置
  * https://github.com/zuojj/fedlab/issues/5
  * CommonsChunkPlugin公共模块抽取  https://segmentfault.com/a/1190000006808865
- * 抽取类库或框架(解决重复加载)  http://cnodejs.org/topic/58396960c71e606e36aed1db   https://segmentfault.com/a/1190000006808865
+ * 抽取类库或框架(解决重复加载)  http://cnodejs.org/topic/58396960c71e606e36aed1db   https://segmentfault.com/a/1190000006808865   https://github.com/zhenyong/Blog/issues/1
  * 代码分割?UglifyJsPlugin兼容IE8?devtool?
  */
 
