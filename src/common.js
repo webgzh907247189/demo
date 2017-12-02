@@ -1,3 +1,6 @@
+import './style/common.css'
+import './style/common.less'
+
 function arrMap(arr){
 	arr.map((item)=>{
 		console.log(item+1)

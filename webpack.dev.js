@@ -5,6 +5,10 @@ const webpackDevServer = require('webpack-dev-server')
 const babelPolyfill = require('babel-polyfill')
 const openBrowserWebpackPlugin = require('open-browser-webpack-plugin')
 
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const extractCSS = new ExtractTextPlugin('style/styleCss.css');
+const extractLESS = new ExtractTextPlugin('style/styleLess.css');
+
 let devPort = '8000'
 
 const commonDevModules = [
@@ -31,6 +35,20 @@ module.exports = {
                 test: /\.js?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader'
+            },
+
+            // {
+            //     test: /\.css$/,   //这有个缺点，您将无法利用浏览器的异步和并行加载CSS的能力。这样，您的网页必须等待，直到您的整个JavaScript 包下载完成，然后重绘网页。
+            //     use: 'css-loader' //并使用css-loader（它输出CSS作为JS模块）
+            // },
+
+            {
+                test: /\.css$/,
+                use: extractCSS.extract(['css-loader'])
+            },
+            {
+                test: /\.less$/,
+                use: extractLESS.extract(['css-loader','less-loader']) //less-loader需要依赖less才能实现。如果用的npm3.0+，less是不会随着less-loader自动安装的，需要手动安装
             }
         ]
     },
@@ -42,6 +60,11 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
              name: "common"
         }),
+
+        // new ExtractTextPlugin('styles.css'),
+        extractCSS,
+        extractLESS,
+
         new openBrowserWebpackPlugin({
             url: `http://localhost:${devPort}`
         }),

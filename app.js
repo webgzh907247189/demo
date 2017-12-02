@@ -3,7 +3,6 @@ import _ from 'lodash';
 
 
 console.log(_.defaults({ 'a': 1 }, { 'a': 3, 'b': 2 }))
-console.log('232132131')
 
 
 let arr = ['aaa','bbb','ccc']
