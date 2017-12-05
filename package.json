@@ -8,7 +8,8 @@
     "preprod": "rimraf ./dist/",
     "prod": "webpack --display-modules --display-chunks --color --config webpack.prod.js",
     "start": "webpack-dev-server --color --config  webpack.dev.js",
-    "startTest": "webpack-dev-server --hot --inline --content-base --color --config  webpack.dev.js"
+    "startTest": "webpack-dev-server --hot --inline --content-base --color --config  webpack.dev.js",
+    "nodeDev": "cross-env PORT=4000 nodemon ./node/express.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "cross-env": "^5.1.1",
     "css-loader": "^0.28.7",
     "es3ify-loader": "^0.2.0",
     "extract-text-webpack-plugin": "^3.0.2",
@@ -39,6 +41,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4"
   }
