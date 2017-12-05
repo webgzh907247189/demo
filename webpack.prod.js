@@ -3,7 +3,8 @@
  * https://github.com/zuojj/fedlab/issues/5
  * CommonsChunkPlugin公共模块抽取  https://segmentfault.com/a/1190000006808865
  * 抽取类库或框架(解决重复加载)  一开始通过先打包，在MD5形式判定文件(库或框架)有没有更改  http://cnodejs.org/topic/58396960c71e606e36aed1db   https://segmentfault.com/a/1190000006808865   https://github.com/zhenyong/Blog/issues/1
- * 代码分割?UglifyJsPlugin兼容IE8?devtool?HtmlWebPlugin需不需要在prod？jq install报错 ？
+ * devtool  source-map  http://www.css88.com/doc/webpack2/configuration/devtool/
+ * 代码分割?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架?autopre?postcss?完整的移动端项目？打包之后的测试?重复依赖的包
  */
 
 const webpack = require('webpack');
@@ -28,6 +29,16 @@ module.exports = {
         publicPath: '/',
         chunkFilename: '[chunkHash].js'
     },
+    devtool: 'nosources-source-map', //里面储存着位置信息。也就是说，转换后的代码的每一个位置，所对应的转换前的位置。有了它，出错的时候，除错工具将直接显示原始代码，而不是转换后的代码
+    resolve:{
+        extensions: ['.js','.wen.js','.jsx','.json', '.scss'],
+        alias: {
+            style: __dirname + '/src/style/'
+        },
+        mainFiles: ['index','index.web'], //解析目录时要使用的文件名
+        modules: [path.resolve(__dirname, "src"), "node_modules"], //如果你想要添加一个目录到模块搜索目录，此目录优先于 node_modules/ 搜索
+        mainFields: ["browser", "module", "main"]
+    },
     module: {
         rules: [
             {
@@ -47,10 +58,11 @@ module.exports = {
                     use: 'css-loader'
                })
             },
+
             {
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
-                    use: ['css-loader','less-loader']
+                    use: ['css-loader','less-loader']  //loader会依次处理，上面的loader作废
                })
             }
         ]
@@ -68,12 +80,12 @@ module.exports = {
         }),
 
         // new ExtractTextPlugin('styles.css'),
-        extractCSS,
+        // extractCSS,
         extractLESS,
 
         new webpack.ProgressPlugin(function(percentage, msg) {
             let percent = Math.floor(percentage * 100) + '%'
-            process.stdout.write(percent+'\r')  // 实时更新编译进度?\r
+            process.stdout.write(percent+'\r')  // 实时更新编译进度?\r (\r表示return，光标回到当前行首。所以能实现单行刷新的进度条效果。)
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {

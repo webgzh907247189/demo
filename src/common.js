@@ -1,5 +1,6 @@
-import './style/common.css'
-import './style/common.less'
+import 'style/common.css'
+import 'style/common.less'
+import 'style/test.css'
 
 function arrMap(arr){
 	arr.map((item)=>{

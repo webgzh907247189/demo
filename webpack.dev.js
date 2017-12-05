@@ -9,6 +9,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractCSS = new ExtractTextPlugin('style/styleCss.css');
 const extractLESS = new ExtractTextPlugin('style/styleLess.css');
 
+let childProcess = require('child_process')
 let devPort = '8000'
 
 const commonDevModules = [
@@ -16,6 +17,9 @@ const commonDevModules = [
     `webpack-dev-server/client?http://localhost: ${devPort}`,
     'webpack/hot/only-dev-server'
 ]
+
+let { port:mockPort } = require('./mock/config')
+childProcess.exec('nodemon ./mock/nodeExpressMock.js')
 
 module.exports = {
     entry: {
@@ -28,7 +32,16 @@ module.exports = {
         filename: 'js/[name].bundle.js',
         publicPath: '/'
     },
-    devtool: 'inline-source-map',
+    devtool: 'inline-source-map', //里面储存着位置信息。也就是说，转换后的代码的每一个位置，所对应的转换前的位置。有了它，出错的时候，除错工具将直接显示原始代码，而不是转换后的代码
+    resolve:{
+        extensions: ['.js','.wen.js','.jsx','.json', '.scss'],
+        alias: {
+            style: __dirname + '/src/style/'
+        },
+        mainFiles: ['index','index.web'], //解析目录时要使用的文件名
+        modules: [path.resolve(__dirname, "src"), "node_modules"], //如果你想要添加一个目录到模块搜索目录，此目录优先于 node_modules/ 搜索
+        mainFields: ["browser", "module", "main"]
+    },
     module: {
         rules: [
             {
@@ -70,7 +83,7 @@ module.exports = {
         }),
         new webpack.ProgressPlugin(function(percentage, msg) {
             let percent = Math.floor(percentage * 100) + '%'
-            process.stdout.write(percent+'\r')  // 实时更新编译进度?\r
+            process.stdout.write(percent+'\r')  // 实时更新编译进度?\r) (\r表示return，光标回到当前行首。所以能实现单行刷新的进度条效果。)
         }),
         new HtmlWebPlugin({
             filename: 'index.html',
@@ -91,6 +104,16 @@ module.exports = {
         // compress: true,
         inline: true,
         disableHostCheck: true,
-        proxy: {}
+        proxy: {
+            /** 联调环境下 **/
+            // '/api/*': {
+            //     target: 'http://localhost:4000'
+            // }
+
+            /** 开发环境下 **/
+            '/api/*': {
+                target: `http://localhost:${mockPort}`
+            }
+        }
     }
 }
