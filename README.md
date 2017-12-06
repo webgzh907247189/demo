@@ -1,5 +1,5 @@
 # demo
-this is for Engineering
+this is for Engineering(工程化项目)
 
 # 开发完成之后，需要验证dist是否正常，我们修改下nginx目录下的配置，使得nginx的静态资源映射到dist目录下，且修改下入口html
 
