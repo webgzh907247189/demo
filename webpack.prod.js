@@ -5,6 +5,7 @@
  * 抽取类库或框架(解决重复加载)  一开始通过先打包，在MD5形式判定文件(库或框架)有没有更改  http://cnodejs.org/topic/58396960c71e606e36aed1db   https://segmentfault.com/a/1190000006808865   https://github.com/zhenyong/Blog/issues/1
  * devtool  source-map  http://www.css88.com/doc/webpack2/configuration/devtool/
  * 代码分割?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架?autopre?postcss?完整的移动端项目？打包之后的测试?重复依赖的包
+ * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79    视频es6对象的in对象检测属性
  */
 
 const webpack = require('webpack');
@@ -83,6 +84,11 @@ module.exports = {
         // extractCSS,
         extractLESS,
 
+        new webpack.DefinePlugin({
+            "process.env":{
+                NODE_ENV:JSON.stringify('production')
+            }
+        }),
         new webpack.ProgressPlugin(function(percentage, msg) {
             let percent = Math.floor(percentage * 100) + '%'
             process.stdout.write(percent+'\r')  // 实时更新编译进度?\r (\r表示return，光标回到当前行首。所以能实现单行刷新的进度条效果。)
