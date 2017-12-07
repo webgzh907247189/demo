@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "webpack --display-modules --display-chunks --config webpack.prod.js",
-    "start": "webpack-dev-server --hot --inline --content-base --config webpack.dev.js"
+    "preprod": "rimraf ./dist/",
+    "prod": "webpack --display-modules --display-chunks --color --config webpack.prod.js",
+    "start": "webpack-dev-server --color --config  webpack.dev.js",
+    "startTest": "webpack-dev-server --hot --inline --content-base --color --config  webpack.dev.js",
+    "nodeDev": "cross-env PORT=4000 nodemon ./node/express.js"
   },
   "repository": {
     "type": "git",
@@ -24,11 +27,22 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "cross-env": "^5.1.1",
+    "css-loader": "^0.28.7",
+    "es3ify-loader": "^0.2.0",
+    "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "nodemon": "^1.12.4",
+    "open-browser-webpack-plugin": "0.0.5",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0"
+    "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.4"
   }
 }
