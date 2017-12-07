@@ -2,6 +2,7 @@
 this is for Engineering(工程化项目)
 
 # 开发完成之后，需要验证dist是否正常，我们修改下nginx目录下的配置，使得nginx的静态资源映射到dist目录下，且修改下入口html
+# 或者启动 npm run runDist 通过express来检验dist是否正常
 
 ### 注意不要直接双击nginx.exe，这样会导致修改配置后重启、停止nginx无效，需要手动关闭任务管理器内的所有nginx进程
 

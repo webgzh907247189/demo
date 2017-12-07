@@ -9,7 +9,8 @@
     "prod": "webpack --display-modules --display-chunks --color --config webpack.prod.js",
     "start": "webpack-dev-server --color --config  webpack.dev.js",
     "startTest": "webpack-dev-server --hot --inline --content-base --color --config  webpack.dev.js",
-    "nodeDev": "cross-env PORT=4000 nodemon ./node/express.js"
+    "nodeDev": "cross-env PORT=4000 nodemon ./node/express.js",
+    "runDist": "cross-env PORT=80 nodemon ./runDist/index.js"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4"
   }
