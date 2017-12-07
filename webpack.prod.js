@@ -6,8 +6,8 @@
  * devtool  source-map  http://www.css88.com/doc/webpack2/configuration/devtool/
  * 打包完成之后的检验工作(打包是否正常) nginx验收 -> 预发布<见 .md>  https://www.cnblogs.com/saysmy/p/6609796.html  https://www.cnblogs.com/tuojunjie/p/6229773.html
  *  
- * 代码分割?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架?autopre?postcss?完整的移动端项目？?重复依赖的包
- * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79    视频es6对象的in对象检测属性？dev合并master代码
+ * 代码分割?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架?autopre?postcss?完整的移动端项目？?重复依赖的包？layout？
+ * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79    视频es6对象的in对象检测属性？dev合并master代码 git giyhub？
  */
 
 const webpack = require('webpack');
