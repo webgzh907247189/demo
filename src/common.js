@@ -1,6 +1,7 @@
 import 'style/common.css'
 import 'style/common.less'
 import 'style/test.css'
+import 'style/minify-min.css'
 
 function arrMap(arr){
 	arr.map((item)=>{
@@ -8,7 +9,7 @@ function arrMap(arr){
 		return item+1
 	})
 }
-
+console.log('热加载测试')
 export { arrMap as default } 
 
 /*

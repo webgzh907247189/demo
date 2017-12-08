@@ -1,7 +1,14 @@
 /*
  * express默认使用jade模板
- * path模块解释  http://javascript.ruanyifeng.com/nodejs/path.html
+ * path模块解释  http://javascript.ruanyifeng.com/nodejs/path.html  https://www.cnblogs.com/52cik/p/learn-node-path.html
  */
+
+// let str = path.dirname('path/upload/file/123.jpg') //根据一个文件或目录得到它所在的目录路径
+// console.log(str) // path/upload/file
+
+// let str = path.dirname(__filename) // 等价于 __dirname
+// console.log(str, __dirname) // 当前文件所在目录
+
 
 let express = require('express')
 let path = require('path')
