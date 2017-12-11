@@ -12,6 +12,8 @@
  * 代码分割?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包？layout？
  * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79    视频es6对象的in对象检测属性？dev合并master代码 git giyhub？热加载失败css？
  * -moz-,-ms-
+ *
+ * redux redux原理 setState()
  */
 
 const webpack = require('webpack');
