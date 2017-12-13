@@ -1,5 +1,9 @@
+/*@import './test1.css'*/
 #aa{
 	color: red;
+	box-shadow: 0 0 0 75px;
+	transform:rotate(30deg);
+	font-size: 20Px;  /*忽略单个属性的最简单的方法是在像素单元声明中使用大写,不让postcss-pxtorem处理*/
 }
 
 .a{

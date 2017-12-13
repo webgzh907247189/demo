@@ -1,5 +1,7 @@
 import arrMap from './src/common.js';
 import _ from 'lodash';
+import attachFastClick from 'fastclick'
+attachFastClick.attach(document.body)
 
 console.log(_.defaults({ 'a': 1 }, { 'a': 3, 'b': 2 }))
 

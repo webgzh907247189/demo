@@ -34,7 +34,7 @@ module.exports = {
     },
     devtool: 'inline-source-map', //里面储存着位置信息。也就是说，转换后的代码的每一个位置，所对应的转换前的位置。有了它，出错的时候，除错工具将直接显示原始代码，而不是转换后的代码
     resolve:{
-        extensions: ['.js','.wen.js','.jsx','.json', '.scss'],
+        extensions: ['.js','.web.js','.jsx','.json', '.scss'],
         alias: {
             style: __dirname + '/src/style/'
         },
@@ -52,16 +52,16 @@ module.exports = {
 
             // {
             //     test: /\.css$/,   //这有个缺点，您将无法利用浏览器的异步和并行加载CSS的能力。这样，您的网页必须等待，直到您的整个JavaScript 包下载完成，然后重绘网页。
-            //     use: 'css-loader' //并使用css-loader（它输出CSS作为JS模块）
+            //     use: 'css-loader' //并使用css-loader（它输出CSS作为JS模块） js是阻塞加载的，样式会出现很慢
             // },
 
             {
                 test: /\.css$/,
-                use: extractCSS.extract(['css-loader'])
+                use: extractCSS.extract(['css-loader?importLoaders=1','postcss-loader']) ///对于css中@import进来的css同样做前缀处理
             },
             {
                 test: /\.less$/,
-                use: extractLESS.extract(['css-loader','less-loader']) //less-loader需要依赖less才能实现。如果用的npm3.0+，less是不会随着less-loader自动安装的，需要手动安装
+                use: extractLESS.extract(['css-loader?importLoaders=1','postcss-loader','less-loader']) //less-loader需要依赖less才能实现。如果用的npm3.0+，less是不会随着less-loader自动安装的，需要手动安装
             }
         ]
     },
