@@ -16,7 +16,7 @@
  * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79    dev合并master代码 git giyhub？热加载失败css？
  *  
  *
- * redux redux原理 setState()   css放在js里面
+ * redux redux原理 setState()   css放在js里面1
  */
 
 const webpack = require('webpack');
