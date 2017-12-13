@@ -8,11 +8,12 @@
  *  
  * autoprefixer postcss  http://www.imooc.com/qadetail/242697?lastmedia=1   http://blog.csdn.net/hanshuoNB/article/details/77530035  https://segmentfault.com/a/1190000010934375#articleHeader1
  * css-loader  css移除注释，压缩  http://www.css88.com/doc/webpack2/loaders/css-loader/   http://www.jianshu.com/p/02380e5deb38
- * ???fastclick   http://blog.csdn.net/wxl1555/article/details/53128966  
- * nextcss  https://www.zhihu.com/question/28622861
+ * fastclick   http://blog.csdn.net/wxl1555/article/details/53128966  
+ * nextcss  https://www.zhihu.com/question/28622861 
+ * 对象的in对象检测属性 let obj = {name:'1',sex:'66666'}; Reflect.has(obj,'name'); 'sex' in obj
  *
  * 代码分割?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包？layout？
- * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79    视频es6对象的in对象检测属性？dev合并master代码 git giyhub？热加载失败css？
+ * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79    dev合并master代码 git giyhub？热加载失败css？
  *  
  *
  * redux redux原理 setState()   css放在js里面
@@ -25,7 +26,7 @@ const webpackDevServer = require('webpack-dev-server')
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractCSS = new ExtractTextPlugin('style/styleCss.css');
-const extractLESS = new ExtractTextPlugin('style/styleLess.css');
+const extractLESS = new ExtractTextPlugin('style/styleLess.css');啊
 
 module.exports = {
     entry: {
