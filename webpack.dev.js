@@ -6,10 +6,12 @@
  * react-router-dom   http://blog.csdn.net/u013938465/article/details/78604434
  * 路由变化，资源不会重新加载   使用NavLink或者官方的push()   禁止使用a标签
  * head -n 1 app.js || tail -n 2 app.js || grep 'react' app.js || cp app.ja apptest.js || mv app.js ../mock/appp.js
+ *
  * 
  * constructor super(props)?  高清图？dpr？图压缩？ nuxt？
- * location.search  location.hash？padStart()?nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
- * http-server http-server -p 9999?装饰器？页面跳转push？
+ * location.search  location.hash？nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
+ * http-server http-server -p 9999?装饰器&&注解？页面跳转push？ 热加载失败(componentDidMount)? export
+ * toString ?children?样式加载不出来
  *
  * es6课程结束掉？react开发webapp，美团  https://www.imooc.com/learn/868
  * 7天微信项目，聊天项目，node部署上线，nginx，rn(https://coding.imooc.com/class/56.html#Anchor)
@@ -90,6 +92,7 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
              name: "common"
         }),

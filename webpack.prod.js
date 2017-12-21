@@ -11,7 +11,9 @@
  * fastclick   http://blog.csdn.net/wxl1555/article/details/53128966  
  * nextcss  https://www.zhihu.com/question/28622861 
  * 对象的in对象检测属性 let obj = {name:'1',sex:'66666'}; Reflect.has(obj,'name'); 'sex' in obj
+ * let a = 'aa' a.padStart(5,'0') // 000aa       a.padEnd(5,'0') // aa000
  *
+ * 
  * 代码分割?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包？layout？
  * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79    dev合并master代码 git giyhub？热加载失败css？
  *  
@@ -28,7 +30,7 @@ const webpackDevServer = require('webpack-dev-server')
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractCSS = new ExtractTextPlugin('style/styleCss.css');
-const extractLESS = new ExtractTextPlugin('style/styleLess.css');啊
+const extractLESS = new ExtractTextPlugin('style/styleLess.css');
 
 module.exports = {
     entry: {
@@ -101,7 +103,7 @@ module.exports = {
         // extractLESS,
         new ExtractTextPlugin('style/styleCss.css'),
 
-        new webpack.DefinePlugin({
+        new webpack.DefinePlugin({   //可在production环境下帮助删除重复或相似文件，可以有效减少文件大小（用于打包文件优化，建议使用在生产环境）
             "process.env":{
                 NODE_ENV:JSON.stringify('production')
             }
