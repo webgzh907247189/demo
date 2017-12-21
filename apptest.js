@@ -16,3 +16,6 @@ fetch('/api/data').then(function(res) {
 }).catch(function(e) {
   console.log("Oops, error");
 });
+
+
+if(module.hot) module.hot.accept()

@@ -1,3 +1,21 @@
+/*
+ * react-hot-loader3.0使用介绍  http://www.jianshu.com/p/b7accbae3a1c( Babel ES2015 preset配置成不使用Babel来编译ES2015的Module特性 ["es2015", { "modules": false }] )
+ * webpack-dev-server信息提示  http://www.imooc.com/qadetail/240317?lastmedia=1
+ * 配置sublime的IDE https://www.douban.com/note/613763618/   http://blog.csdn.net/wxl1555/article/details/69941451
+ * 配置sublime的IDE自动补全  http://www.cnblogs.com/huangtailang/p/4499988.html  (enter || shift+enter || ctrl+enter)
+ * react-router-dom   http://blog.csdn.net/u013938465/article/details/78604434
+ * 路由变化，资源不会重新加载   使用NavLink或者官方的push()   禁止使用a标签
+ * head -n 1 app.js || tail -n 2 app.js || grep 'react' app.js || cp app.ja apptest.js || mv app.js ../mock/appp.js
+ * 
+ * constructor super(props)?  高清图？dpr？图压缩？ nuxt？
+ * location.search  location.hash？padStart()?nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
+ * http-server http-server -p 9999?装饰器？页面跳转push？
+ *
+ * es6课程结束掉？react开发webapp，美团  https://www.imooc.com/learn/868
+ * 7天微信项目，聊天项目，node部署上线，nginx，rn(https://coding.imooc.com/class/56.html#Anchor)
+ * scott微信小程序(vue+node+mongo https://coding.imooc.com/class/119.html#Anchor  https://coding.imooc.com/class/113.html)
+ */
+
 const webpack = require('webpack');
 const path = require('path')
 const HtmlWebPlugin = require('html-webpack-plugin')
@@ -14,7 +32,8 @@ let devPort = '8000'
 
 const commonDevModules = [
     'babel-polyfill',
-    `webpack-dev-server/client?http://localhost: ${devPort}`,
+    'react-hot-loader/patch',
+    `webpack-dev-server/client?http://localhost:${devPort}`,
     'webpack/hot/only-dev-server'
 ]
 
@@ -24,7 +43,7 @@ childProcess.exec('nodemon ./mock/nodeExpressMock.js')
 module.exports = {
     entry: {
         common: commonDevModules,
-        app: './app.js',
+        index: './index.js',
         appTest: './apptest.js'
     },
     output: {
@@ -36,7 +55,8 @@ module.exports = {
     resolve:{
         extensions: ['.js','.web.js','.jsx','.json', '.scss'],
         alias: {
-            style: __dirname + '/src/style/'
+            style: __dirname + '/src/style/',
+            component: __dirname + '/src/component/'
         },
         mainFiles: ['index','index.web'], //解析目录时要使用的文件名
         modules: [path.resolve(__dirname, "src"), "node_modules"], //如果你想要添加一个目录到模块搜索目录，此目录优先于 node_modules/ 搜索
@@ -88,7 +108,7 @@ module.exports = {
         new HtmlWebPlugin({
             filename: 'index.html',
             template: './index.html',
-            thunks: ['common','app', 'appTest'],
+            thunks: ['common','index', 'appTest'],
             inject: true,
             minify: {
                 collapseInlineTagWhitespace: false,
@@ -100,7 +120,7 @@ module.exports = {
         host: 'localhost',
         port: devPort,
         hot: true,
-        // historyApiFallback: true,
+        historyApiFallback: true,  //??     ??http://www.ruanyifeng.com/blog/2016/05/react_router.html?utm_source=tool.lu
         // compress: true,
         inline: true,
         disableHostCheck: true,

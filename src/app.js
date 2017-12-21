@@ -1,0 +1,34 @@
+import React from 'react'
+import { BrowserRouter as Router,Route,Switch,Redirect } from 'react-router-dom'
+import Test from 'component/Test'
+import Test1 from 'component/Test1'
+import Test2 from 'component/Test2'
+
+// <IndexRoute component={Test}/>
+
+//函数的作用域在定义的时候决定
+
+//////////////////////////
+//react-router-dom V4版本(http://blog.csdn.net/u013938465/article/details/78604434) //
+//////////////////////////
+
+/**
+ *  BrowserRouter：基于浏览器H5 history API的一种Router，推荐使用这种方式
+ *  Route : 是路由中最最基础和最最重要的，其path为要匹配地址栏的路径
+ *  Redirect ：重定向路由，主要用于匹配无效地址到指定路径
+ *  Route exact 使用该模式后，地址是绝对匹配，比如/home 如果不设置exact，当地址为/home/group时也会匹配，但使用之后，则不会。
+ *  Switch ： 这个是v4新增加的，是为了保证路由匹配的唯一性，从上往下，一旦匹配上，就不再往后匹配了。
+ *  NavLink：和Link一样，文档说NavLink可以自定义激活状态和类名，这里使用NavLink和Link都可，暂没有区别 (路由变化，资源不会重新加载)
+ */
+const Routers = () => 
+	<Router>
+		<Switch>
+			<Route exact path='/test' component={Test}/>
+			<Route exact path='/test1' component={Test1}/>
+			<Route exact path='/test2' component={Test2}/>
+			<Redirect to='/test'/>
+		</Switch >
+	</Router>
+
+
+export default Routers

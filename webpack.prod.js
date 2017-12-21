@@ -16,8 +16,10 @@
  * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79    dev合并master代码 git giyhub？热加载失败css？
  *  
  *
- * redux redux原理 setState()   css放在js里面1
+ * redux redux原理 setState()   css放在js里面1   co
  */
+
+
 
 const webpack = require('webpack');
 const path = require('path')
@@ -31,7 +33,7 @@ const extractLESS = new ExtractTextPlugin('style/styleLess.css');啊
 module.exports = {
     entry: {
         common: 'babel-polyfill',
-        app: './app.js',
+        index: './index.js',
         appTest: './apptest.js',
         vendor: ['lodash']
     },
@@ -45,7 +47,8 @@ module.exports = {
     resolve:{
         extensions: ['.js','.web.js','.jsx','.json', '.scss'],
         alias: {
-            style: __dirname + '/src/style/'
+            style: __dirname + '/src/style/',
+            component: __dirname + '/src/component/'
         },
         mainFiles: ['index','index.web'], //解析目录时要使用的文件名
         modules: [path.resolve(__dirname, "src"), "node_modules"], //如果你想要添加一个目录到模块搜索目录，此目录优先于 node_modules/ 搜索
@@ -88,7 +91,7 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             // name: 'common', //多入口，模块重复引用，分文件输出（将多次引用的模块打包到公共模块） 
             // minChunks: 2, //引用次数
-            // chunks: ['app','appTest'] //只有在app.js和appTest.js中都引用的模块才会被打包的到公共模块（这里即common.js）
+            // chunks: ['index','appTest'] //只有在index.js和appTest.js中都引用的模块才会被打包的到公共模块（这里即common.js）
 
             names: ['vendor','runtime']
         }),
@@ -122,7 +125,7 @@ module.exports = {
         new HtmlWebPlugin({
             filename: 'detail.html',
             template: './index.html',
-            thunks: ['common','app', 'appTest'],
+            thunks: ['common','index', 'appTest'],
             inject: 'body',
             minify: {
                 collapseInlineTagWhitespace: false,
