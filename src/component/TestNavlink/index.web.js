@@ -1,7 +1,6 @@
 import React,{ Component } from 'react'
 import { NavLink,withRouter,browserHistory } from 'react-router-dom'
-// import './index.less'
-import 'style/com.less'
+import './index.less'
 
 class TestNavlink extends Component{
 	constructor(props){
@@ -30,7 +29,7 @@ class TestNavlink extends Component{
 
 	render(){
 		return (<div>
-			<div className='react-test' ref='react-test' onClick={this.jumpClick.bind(this)} style={{color: 'red'}}>
+			<div className='react-test' ref='react-test' onClick={this.jumpClick.bind(this)} >
 				react组件测试，使用this.props.location.push()跳转到testa
 			</div>
 			<NavLink to='/testa'>navlink跳转testa</NavLink>
