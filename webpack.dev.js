@@ -6,12 +6,13 @@
  * react-router-dom   http://blog.csdn.net/u013938465/article/details/78604434
  * 路由变化，资源不会重新加载   使用NavLink或者官方的push()   禁止使用a标签
  * head -n 1 app.js || tail -n 2 app.js || grep 'react' app.js || cp app.ja apptest.js || mv app.js ../mock/appp.js
- *
+ *  react-router-dom 使用 http://www.jianshu.com/p/e3adc9b5f75c/  h ttp://www.jianshu.com/p/56dce67b8b13 
+ *  
  * 
  * constructor super(props)?  高清图？dpr？图压缩？ nuxt？
  * location.search  location.hash？nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
- * http-server http-server -p 9999?装饰器&&注解？页面跳转push？ 热加载失败(componentDidMount)? export
- * toString ?children?
+ * http-server http-server -p 9999?装饰器&&注解？热加载失败(componentDidMount)? export
+ * toString ?
  *
  * es6课程结束掉？react开发webapp，美团  https://www.imooc.com/learn/868
  * 7天微信项目，聊天项目，node部署上线，nginx，rn(https://coding.imooc.com/class/56.html#Anchor)
