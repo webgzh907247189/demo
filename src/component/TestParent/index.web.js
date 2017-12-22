@@ -1,4 +1,6 @@
 import React,{ Component } from 'react'
+import { Route,Switch } from 'react-router-dom'
+import ChildrenRoute from 'component/ChildrenRoute'
 import './index.less'
 
 class TestParent extends Component{
@@ -10,7 +12,9 @@ class TestParent extends Component{
 	render(){
 		return <div className='test-arent'>
 			<div>我的react-router-dom.  现在这个是父组件,背景颜色是黄色的</div>
-			{this.props.children}
+			<Switch>
+				<Route  path='/a/b' component={ChildrenRoute}/>
+			</Switch>
 		</div>
 	}
 }

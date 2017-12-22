@@ -5,8 +5,9 @@ import Testa from 'component/Testa'
 import TestHistory from 'component/TestHistory'
 import TestChildren from 'component/TestChildren'
 import TestParent from 'component/TestParent'
-import ChildrenRoute from 'component/ChildrenRoute'
-import TestGrandson from 'component/TestGrandson'
+
+// import ChildrenRoute from 'component/ChildrenRoute'
+// import TestGrandson from 'component/TestGrandson'
 
 // <IndexRoute component={Test}/>
 
@@ -28,23 +29,18 @@ import TestGrandson from 'component/TestGrandson'
  */
  
 
-					// <Route exact path='/test-route' component={ChildrenRoute} />
-// <TestParent>
-	// <ChildrenRoute>
-		// <Route exact path='/' component={TestGrandson} />
-	// </ChildrenRoute>
-// </TestParent>
-
-
+ 
 const Routers = () => 
 	<Router>
 		<Switch>
-			
 			<Route exact path='/test-navlink' component={TestNavlink} />
 			<Route exact path='/testa' component={Testa}/>
 			<Route exact path='/test-history' component={TestHistory}/>
 			<Route exact path='/test-children' component={TestChildren}/>
-			<Redirect to='/test-navlink'/>
+
+			<Route  path='/a' component={TestParent}/>			
+			
+			<Redirect to='/test-navlink'/>  
 		</Switch >
 	</Router>
 

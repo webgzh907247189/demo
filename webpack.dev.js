@@ -11,10 +11,11 @@
  * 系统自动给nodejs 文件增加2个变量 exports 和 module, module 又有一个属性 exports, 这个exports 属性指向一个空对象 {}; 同时 exports这个变量也指向了这个空对象{}  ( exports => {} <=module.exports )
  * require方能看到的只有module.exports这个对象，看不到exports对象
  * dev环境下使用热加载&CommonsChunkPlugin,出现打印的日志丢失情况 
+ * react-route-dom的嵌套路由  http://www.cnblogs.com/fengly0503/p/7823167.html
  *
  * constructor super(props)?  高清图？dpr？图压缩？ nuxt？
  * nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
- * http-server http-server -p 9999?装饰器&&注解？ 路由？
+ * http-server http-server -p 9999?装饰器&&注解？ 
  * toString ?
  *
  * es6课程结束掉？react开发webapp，美团  https://www.imooc.com/learn/868
