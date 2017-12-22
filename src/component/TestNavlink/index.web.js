@@ -1,5 +1,6 @@
 import React,{ Component } from 'react'
 import { NavLink,withRouter,browserHistory,Prompt } from 'react-router-dom'
+import ReactDOM from 'react-dom'
 import './index.less'
 
 
@@ -17,7 +18,15 @@ class TestNavlink extends Component{
 
 	componentDidMount(){
 		let reactTest = this.refs['react-test']
-		console.log(reactTest)
+
+		/*  findDOMNode  http://www.css88.com/react/docs/react-dom.html#finddomnode  https://segmentfault.com/q/1010000006198939/a-1020000006201898
+		 *  findDOMNode 不能用于函数式组件。
+		 *  在大多数情况下，你可以绑定一个 ref 到 DOM 节点上，从而避免使用findDOMNode
+		 *  http://blog.csdn.net/dahuzix/article/details/70186397
+		 */
+
+		// ReactDOM.findDOMNode(reactTest) === reactTest //true
+		console.log(reactTest.style) //margin pading
 	}
 
 	jumpClick(){
@@ -33,7 +42,7 @@ class TestNavlink extends Component{
 		 */
 		console.log(location)
 
-		history.push({pathname:'/testa',search:'?use=props&use=push&b=2'})  //默认是加上'?'(search)
+		history.push({pathname:'/testa',search:'?use=props&use=push&b=2#cc=test'})  //默认是加上'?'(search)
 	}
 
 	leaveRoute(location){

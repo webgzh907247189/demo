@@ -14,10 +14,10 @@
  * let a = 'aa' a.padStart(5,'0') // 000aa       a.padEnd(5,'0') // aa000
  * extract-text-webpack-plugin 没有css热替换  http://www.css88.com/doc/webpack2/plugins/extract-text-webpack-plugin/(优异对比)
  * extract-text-webpack-plugin https://segmentfault.com/q/1010000005031628    https://segmentfault.com/q/1010000008299770
- *
+ * git 回退到历史版本  git log命令查看所有的历史版本，获取某个历史版本的id    git reset --hard 139dcfaa558e3276b30b6
  * 
  * 代码分割?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包？layout？
- * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79    dev合并master代码 git giyhub
+ * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79 
  *
  * redux redux原理   setState()   co
  */

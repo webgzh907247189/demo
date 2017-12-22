@@ -11,7 +11,6 @@ class Jump extends Component{
 	jumpClick(){
 		const { match, location, history } = this.props
 		console.log(location)
-
 		history.push({pathname: '/test-history',search: '?use=@withRouter'})
 	}
 

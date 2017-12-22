@@ -7,11 +7,14 @@
  * 路由变化，资源不会重新加载   使用NavLink或者官方的push()   禁止使用a标签
  * head -n 1 app.js || tail -n 2 app.js || grep 'react' app.js || cp app.ja apptest.js || mv app.js ../mock/appp.js
  * react-router-dom 使用 http://www.jianshu.com/p/e3adc9b5f75c/  h ttp://www.jianshu.com/p/56dce67b8b13 
- *  
- * 
+ * export   https://www.zhihu.com/question/26621212   http://blog.csdn.net/zhou_xiao_cheng/article/details/52759632  https://www.cnblogs.com/fayin/p/6831071.html
+ * 系统自动给nodejs 文件增加2个变量 exports 和 module, module 又有一个属性 exports, 这个exports 属性指向一个空对象 {}; 同时 exports这个变量也指向了这个空对象{}  ( exports => {} <=module.exports )
+ * require方能看到的只有module.exports这个对象，看不到exports对象
+ * dev环境下使用热加载&CommonsChunkPlugin,出现打印的日志丢失情况 
+ *
  * constructor super(props)?  高清图？dpr？图压缩？ nuxt？
- * location.search  location.hash？nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
- * http-server http-server -p 9999?装饰器&&注解？热加载失败(componentDidMount)? export
+ * nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
+ * http-server http-server -p 9999?装饰器&&注解？ 路由？
  * toString ?
  *
  * es6课程结束掉？react开发webapp，美团  https://www.imooc.com/learn/868
@@ -59,7 +62,8 @@ module.exports = {
         extensions: ['.js','.web.js','.jsx','.json', '.scss'],
         alias: {
             style: __dirname + '/src/style/',
-            component: __dirname + '/src/component/'
+            component: __dirname + '/src/component/',
+            util: __dirname + '/src/util/'
         },
         mainFiles: ['index','index.web'], //解析目录时要使用的文件名
         modules: [path.resolve(__dirname, "src"), "node_modules"], //如果你想要添加一个目录到模块搜索目录，此目录优先于 node_modules/ 搜索
@@ -103,9 +107,6 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-             name: "common"
-        }),
 
         // new ExtractTextPlugin('styles.css'),
         // extractCSS,
@@ -135,6 +136,7 @@ module.exports = {
         hot: true,
         historyApiFallback: true,  //??     ??http://www.ruanyifeng.com/blog/2016/05/react_router.html?utm_source=tool.lu
         // compress: true,
+
         inline: true,
         disableHostCheck: true,
         proxy: {

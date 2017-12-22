@@ -26,17 +26,20 @@ import TestGrandson from 'component/TestGrandson'
  *
  * 	若使用browserHistory，需要对服务端改造(通配)
  */
+ 
 
-//					<Route exact path='/test-route' component={ChildrenRoute} />
+					// <Route exact path='/test-route' component={ChildrenRoute} />
+// <TestParent>
+	// <ChildrenRoute>
+		// <Route exact path='/' component={TestGrandson} />
+	// </ChildrenRoute>
+// </TestParent>
+
+
 const Routers = () => 
 	<Router>
 		<Switch>
-			<TestParent>
-				<ChildrenRoute>
-					<Route exact path='/' component={TestGrandson} />
-				</ChildrenRoute>
-			</TestParent>
-
+			
 			<Route exact path='/test-navlink' component={TestNavlink} />
 			<Route exact path='/testa' component={Testa}/>
 			<Route exact path='/test-history' component={TestHistory}/>

@@ -1,6 +1,7 @@
 import arrMap from './src/common'
 import fetch from 'isomorphic-fetch'
 import attachFastClick from 'fastclick'
+import {objToArr} from 'util/index'
 import _ from 'lodash'
 
 console.log(_.defaults({ 'a': 1 }, { 'a': 3, 'b': 2 }))
@@ -17,13 +18,9 @@ arrMap(arr)
 
 
 
-function * objToArr(obj){
-	for (let key of Object.keys(obj)){
-		yield [key,obj[key]]
-	}
-}
 
-let obj = {aaa: '111',bbb: '222'}
+
+let obj = {aaa: '1111',bbb: '2222'}
 for(let [key, value] of objToArr(obj)){
 	console.log(key, value)
 }

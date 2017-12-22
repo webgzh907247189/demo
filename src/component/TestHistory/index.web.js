@@ -7,19 +7,23 @@ class TestHistory extends Component{
 		super(props)
 	}
 
+	componentDidMount(){
+		console.log('this is test')
+	}
+
 	static contextTypes = {
 	    router: PropTypes.object.isRequired
 	}
 
 	jumpClick(){
 		let {history} = this.context.router
-		console.log(history)
+		// console.log(history)
 		history.push({pathname: '/test-children',search:'?use=context&use=router&d=2'})
 	}
 
 	render(){
 		return <div>
-			<div onClick={this.jumpClick.bind(this)}>react组件测试使用context.router.history.push()对象跳转</div>
+			<div onClick={this.jumpClick.bind(this)}>react组件测试使用context.router.history.push()对象跳转。</div>
 			<NavLink to='test-children'>navlink跳转test-children</NavLink>
 		</div>
 	}
