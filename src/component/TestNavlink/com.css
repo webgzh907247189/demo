@@ -1,0 +1,14 @@
+
+
+:root {
+    --color-gray: #333;
+}
+.postcss-nextcss{
+	color:var(--color-gray);
+}
+
+
+.react-test{
+	text-decoration: underline;
+	font-size: 40px;
+}

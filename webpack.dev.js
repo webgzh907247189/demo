@@ -6,10 +6,13 @@
  * react-router-dom   http://blog.csdn.net/u013938465/article/details/78604434
  * 路由变化，资源不会重新加载   使用NavLink或者官方的push()   禁止使用a标签
  * head -n 1 app.js || tail -n 2 app.js || grep 'react' app.js || cp app.ja apptest.js || mv app.js ../mock/appp.js
+ * react-router-dom 使用 http://www.jianshu.com/p/e3adc9b5f75c/  h ttp://www.jianshu.com/p/56dce67b8b13 
+ *  
  * 
  * constructor super(props)?  高清图？dpr？图压缩？ nuxt？
- * location.search  location.hash？padStart()?nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
- * http-server http-server -p 9999?装饰器？页面跳转push？
+ * location.search  location.hash？nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
+ * http-server http-server -p 9999?装饰器&&注解？热加载失败(componentDidMount)? export
+ * toString ?
  *
  * es6课程结束掉？react开发webapp，美团  https://www.imooc.com/learn/868
  * 7天微信项目，聊天项目，node部署上线，nginx，rn(https://coding.imooc.com/class/56.html#Anchor)
@@ -23,9 +26,9 @@ const webpackDevServer = require('webpack-dev-server')
 const babelPolyfill = require('babel-polyfill')
 const openBrowserWebpackPlugin = require('open-browser-webpack-plugin')
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const extractCSS = new ExtractTextPlugin('style/styleCss.css');
-const extractLESS = new ExtractTextPlugin('style/styleLess.css');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin')
+// const extractCSS = new ExtractTextPlugin('style/styleCss.css');
+// const extractLESS = new ExtractTextPlugin('style/styleLess.css');
 
 let childProcess = require('child_process')
 let devPort = '8000'
@@ -75,13 +78,22 @@ module.exports = {
             //     use: 'css-loader' //并使用css-loader（它输出CSS作为JS模块） js是阻塞加载的，样式会出现很慢
             // },
 
+            // {
+            //     test: /\.css$/,
+            //     use: extractCSS.extract(['css-loader?importLoaders=1','postcss-loader']) ///对于css中@import进来的css同样做前缀处理
+            // },
+            // {
+            //     test: /\.less$/,
+            //     use: extractLESS.extract(['css-loader?importLoaders=1','postcss-loader','less-loader']) //less-loader需要依赖less才能实现。如果用的npm3.0+，less是不会随着less-loader自动安装的，需要手动安装
+            // }
+            
             {
                 test: /\.css$/,
-                use: extractCSS.extract(['css-loader?importLoaders=1','postcss-loader']) ///对于css中@import进来的css同样做前缀处理
+                use: ['style-loader','css-loader?importLoaders=1','postcss-loader'] ///对于css中@import进来的css同样做前缀处理
             },
             {
                 test: /\.less$/,
-                use: extractLESS.extract(['css-loader?importLoaders=1','postcss-loader','less-loader']) //less-loader需要依赖less才能实现。如果用的npm3.0+，less是不会随着less-loader自动安装的，需要手动安装
+                use: ['style-loader','css-loader?importLoaders=1','postcss-loader','less-loader'] //less-loader需要依赖less才能实现。如果用的npm3.0+，less是不会随着less-loader自动安装的，需要手动安装
             }
         ]
     },
@@ -90,13 +102,14 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
              name: "common"
         }),
 
         // new ExtractTextPlugin('styles.css'),
-        extractCSS,
-        extractLESS,
+        // extractCSS,
+        // extractLESS,
 
         new openBrowserWebpackPlugin({
             url: `http://localhost:${devPort}`
