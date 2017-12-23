@@ -10,7 +10,8 @@
     "start": "webpack-dev-server --color --config  webpack.dev.js",
     "startTest": "webpack-dev-server --hot --inline --content-base --color --config  webpack.dev.js",
     "nodeDev": "cross-env PORT=4000 nodemon ./node/express.js",
-    "runDist": "cross-env PORT=80 nodemon ./runDist/index.js"
+    "runDist": "cross-env PORT=80 nodemon ./runDist/index.js",
+    "runHttpServer": "cross-env PORT=5000 nodemon ./runDist2/index.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "es3ify-loader": "^0.2.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
+    "http-server": "^0.10.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "nodemon": "^1.12.4",

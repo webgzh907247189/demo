@@ -12,13 +12,14 @@
  * require方能看到的只有module.exports这个对象，看不到exports对象
  * dev环境下使用热加载&CommonsChunkPlugin,出现打印的日志丢失情况 
  * react-route-dom的嵌套路由  http://www.cnblogs.com/fengly0503/p/7823167.html
+ * http-server  http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html  https://www.npmjs.com/package/http-server
  *
  * constructor super(props)?  高清图？dpr？图压缩？ nuxt？
  * nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
- * http-server http-server -p 9999?装饰器&&注解？ 
+ * 装饰器&&注解？ 
  * toString ?
  *
- * es6课程结束掉？react开发webapp，美团  https://www.imooc.com/learn/868
+ * es6课程结束掉？react开发webapp，美团(12h)  https://www.imooc.com/learn/868
  * 7天微信项目，聊天项目，node部署上线，nginx，rn(https://coding.imooc.com/class/56.html#Anchor)
  * scott微信小程序(vue+node+mongo https://coding.imooc.com/class/119.html#Anchor  https://coding.imooc.com/class/113.html)
  */
@@ -150,6 +151,12 @@ module.exports = {
             '/api/*': {
                 target: `http://localhost:${mockPort}`
             }
-        }
+        } 
+
+        // *表示任意文件名，**表示任意一层子目录
+        // proxy: [{
+        //     context: ['**', '!**/*.html', '!**/*.js', '!**/*.css'],
+        //     target: 'http://localhost:7001'
+        // }]
     }
 }
