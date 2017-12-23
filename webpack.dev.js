@@ -13,8 +13,10 @@
  * dev环境下使用热加载&CommonsChunkPlugin,出现打印的日志丢失情况 
  * react-route-dom的嵌套路由  http://www.cnblogs.com/fengly0503/p/7823167.html
  * http-server  http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html  https://www.npmjs.com/package/http-server
+ * constructor super(props)  <在ES6中的class语法中，只要你的class是子类，那必须得调用super，换句话说，有constructor就得有super> https://segmentfault.com/a/1190000008165717
+ * 仅当你想在constructor内使用props才将props传入super(把props传入super，为了在constructor中访问props)  https://segmentfault.com/a/1190000008165717
  *
- * constructor super(props)?  高清图？dpr？图压缩？ nuxt？
+ * 高清图？dpr？图压缩吕大豹？ nuxt？
  * nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
  * 装饰器&&注解？ 
  * toString ?

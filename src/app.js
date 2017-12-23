@@ -5,6 +5,7 @@ import Testa from 'component/Testa'
 import TestHistory from 'component/TestHistory'
 import TestChildren from 'component/TestChildren'
 import TestParent from 'component/TestParent'
+import Layout from 'component/Layout'
 
 // import ChildrenRoute from 'component/ChildrenRoute'
 // import TestGrandson from 'component/TestGrandson'
@@ -32,16 +33,18 @@ import TestParent from 'component/TestParent'
  
 const Routers = () => 
 	<Router>
-		<Switch>
-			<Route exact path='/test-navlink' component={TestNavlink} />
-			<Route exact path='/testa' component={Testa}/>
-			<Route exact path='/test-history' component={TestHistory}/>
-			<Route exact path='/test-children' component={TestChildren}/>
+		<Layout>
+			<Switch>
+				<Route exact path='/test-navlink' component={TestNavlink} />
+				<Route exact path='/testa' component={Testa}/>
+				<Route exact path='/test-history' component={TestHistory}/>
+				<Route exact path='/test-children' component={TestChildren}/>
 
-			<Route  path='/a' component={TestParent}/>			
-			
-			<Redirect to='/test-navlink'/>  
-		</Switch >
+				<Route  path='/a' component={TestParent}/>			
+				
+				<Redirect to='/test-navlink'/>
+			</Switch>
+		</Layout>	
 	</Router>
 
 
