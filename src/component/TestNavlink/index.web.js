@@ -60,6 +60,7 @@ class TestNavlink extends Component{
 		return (<div>
 			<div className='react-test' ref='react-test' onClick={this.jumpClick.bind(this)} >
 				react组件测试，使用this.props.location.push()跳转到testa
+				<div className='img-test'></div>
 			</div>
 			<Prompt message={ (location)=>{return this.leaveRoute(location) } }  when={ this.getBoolen() }/>
 			<NavLink to='/testa'>navlink跳转testa</NavLink>

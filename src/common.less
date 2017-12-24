@@ -1,0 +1,20 @@
+.backgroundImage(@src, @width) {
+	background-image: url(@src);
+
+    [data-dpr="2"] & {
+			@base-url :  %("%s?x-oss-process=image/resize,w_%s", @src, @width * 2 / 3);
+			background-image: url("@{base-url}")
+    }
+    [data-dpr="1"] & {
+			@base-url : %("%s?x-oss-process=image/resize,w_%s", @src, @width /3);
+			background-image: url("@{base-url}")
+    }
+}
+
+
+html{
+	height: 100%;
+}
+body{
+	height: 100%;
+}

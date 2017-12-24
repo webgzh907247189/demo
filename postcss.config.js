@@ -4,7 +4,7 @@ module.exports = {
 		require('postcss-cssnext'),
 		require('autoprefixer')({browsers: ['last 10 versions','Firefox >= 20','>0%']}),
     	require('postcss-pxtorem')({
-    		rootValue: 75,propWhiteList: []
+    		rootValue: 75,propList: ['*','!font-size'],minPixelValue: 1   // https://www.npmjs.com/package/postcss-pxtorem
     	})
 	]
 }

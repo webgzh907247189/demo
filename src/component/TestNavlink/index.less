@@ -1,8 +1,25 @@
 
-
-
 .react-test{
 	text-decoration: underline;
 	font-size: 30px;
 	color: red;
+}
+
+.img-test{
+    .bgImg('./a.jpg?c=3');
+	width: 200px;
+	height: 300px;
+}
+
+
+.bgImg(@src) {
+	background-image: url(@src);
+
+    [data-dpr="2"] & {
+			background-image: url(@src)
+    }
+    
+    [data-dpr="1"] & {
+			background-image: url(@src)
+    }
 }
