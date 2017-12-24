@@ -27,8 +27,9 @@
  * chunkHash     https://segmentfault.com/a/1190000012469443#articleHeader14       http://www.cnblogs.com/ihardcoder/p/5623411.html
  * chunkHash      hash在js和css中不实用，所以在项目中所有的js都准备用chunkHash,img、font中是没有chunkHash的，仍然需要用到hash
  * js和js引入的css的chunkhash是相同的,css是使用ExtractTextPlugin插件引入的，这时候可以使用到这个插件提供的contenthash
+ * 使用chunkHash来操作css，css更改之后，打包出来的css的chunkHash没变，使得线上模板依然引用的是这个[chunkHash].css(因为原来的css还在缓存里面，间接使得更改的css没有生效)
  *
- * 图压缩吕大豹  合并？  打包之后查看添加网页(拷贝图片)?调整express路由？
+ * 图压缩吕大豹  合并？  打包之后查看添加网页(拷贝图片  参数问题需要fixed)?
  * nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
  * 装饰器&&注解？nuxt？
  * toString ?

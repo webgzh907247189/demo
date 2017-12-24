@@ -19,8 +19,9 @@
  * chunkHash     https://segmentfault.com/a/1190000012469443#articleHeader14       http://www.cnblogs.com/ihardcoder/p/5623411.html
  * chunkHash      hash在js和css中不实用，所以在项目中所有的js都准备用chunkHash,img、font中是没有chunkHash的，仍然需要用到hash
  * js和js引入的css的chunkhash是相同的,css是使用ExtractTextPlugin插件引入的，这时候可以使用到这个插件提供的contenthash
- * 
- * 代码分割?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包
+ * 使用chunkHash来操作css，css更改之后，打包出来的css的chunkHash没变，使得线上模板依然引用的是这个[chunkHash].css(因为原来的css还在缓存里面，间接使得更改的css没有生效) 
+ *
+ * 代码分割(code spliting 技术异步加载)?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包
  * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79 
  *
  * redux redux原理   setState()   co
@@ -115,7 +116,7 @@ module.exports = {
 
         // new ExtractTextPlugin('styles.css'),
         // extractCSS,
-        // extractLESS,
+        // extractLESS,  
         new ExtractTextPlugin('style/[name]-[contenthash].css',{allChunks: true}),
 
         new webpack.DefinePlugin({   //可在production环境下帮助删除重复或相似文件，可以有效减少文件大小（用于打包文件优化，建议使用在生产环境）

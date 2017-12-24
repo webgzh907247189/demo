@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "preprod": "rimraf ./dist/",
     "prod": "webpack --display-modules --display-chunks --color --config webpack.prod.js",
+    "postprod": "node ./bin/index.js",
     "start": "webpack-dev-server --color --config  webpack.dev.js",
     "startTest": "webpack-dev-server --hot --inline --content-base --color --config  webpack.dev.js",
     "nodeDev": "cross-env PORT=4000 nodemon ./node/express.js",
