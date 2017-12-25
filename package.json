@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "preprod": "rimraf ./dist/",
     "prod": "webpack --display-modules --display-chunks --color --config webpack.prod.js",
+    "postprod": "node ./bin/index.js",
     "start": "webpack-dev-server --color --config  webpack.dev.js",
     "startTest": "webpack-dev-server --hot --inline --content-base --color --config  webpack.dev.js",
     "nodeDev": "cross-env PORT=4000 nodemon ./node/express.js",
@@ -35,6 +36,7 @@
     "css-loader": "^0.28.7",
     "es3ify-loader": "^0.2.0",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
     "html-webpack-plugin": "^2.30.1",
     "http-server": "^0.10.0",
     "less": "^2.7.3",
@@ -52,6 +54,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   },

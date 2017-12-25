@@ -1,5 +1,3 @@
-import 'style/common.css'
-import 'style/common.less'
 import 'style/test.css'
 import 'style/minify-min.css'
 

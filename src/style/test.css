@@ -1,3 +1,43 @@
 .test1{
 	color: yellow
 }
+
+
+/*@import './test1.css'*/
+#aa{
+	color: red;
+	box-shadow: 0 0 0 15px;
+	/*transform:rotate(3deg);*/
+	font-size: 20Px;  /*忽略单个属性的最简单的方法是在像素单元声明中使用大写,不让postcss-pxtorem处理*/
+	height: 75px; /*px*/
+}
+
+.a{
+	color:'#000'
+}
+
+
+
+
+.test{
+	color: blue;
+	width: 600px;
+	height: 400px;
+	background: #ff4;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+
+
+:root {
+    --color-gray: #333;
+}
+.postcss-nextcss{
+	color:var(--color-gray);
+}
+
+
+

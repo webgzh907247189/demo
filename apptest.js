@@ -43,4 +43,11 @@ fetch('/api/data').then(function(res) {
 });
 
 
+
+let div = document.createElement('div')
+div.id = 'create-element-by-test'
+// div.innerHTML = '13213213'
+div.textContent = 'this is test for createElement'
+document.body.appendChild(div)
+
 if(module.hot) module.hot.accept()

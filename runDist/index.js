@@ -30,7 +30,7 @@ app.set('view engine','html')     // 调用render函数时能自动为我们加�
 app.set('views', path.join(__dirname, '../dist'));
 
 
-app.get('/',(req,res,next)=>{
+app.get('/*',(req,res,next)=>{
 	res.render('detail',{title: '测试dist'})
 })
 

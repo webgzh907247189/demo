@@ -15,8 +15,13 @@
  * extract-text-webpack-plugin 没有css热替换  http://www.css88.com/doc/webpack2/plugins/extract-text-webpack-plugin/(优异对比)
  * extract-text-webpack-plugin https://segmentfault.com/q/1010000005031628    https://segmentfault.com/q/1010000008299770
  * git 回退到历史版本  git log命令查看所有的历史版本，获取某个历史版本的id    git reset --hard 139dcfaa558e3276b30b6
- * 
- * 代码分割?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包？layout？
+ *
+ * chunkHash     https://segmentfault.com/a/1190000012469443#articleHeader14       http://www.cnblogs.com/ihardcoder/p/5623411.html
+ * chunkHash      hash在js和css中不实用，所以在项目中所有的js都准备用chunkHash,img、font中是没有chunkHash的，仍然需要用到hash
+ * js和js引入的css的chunkhash是相同的,css是使用ExtractTextPlugin插件引入的，这时候可以使用到这个插件提供的contenthash
+ * 使用chunkHash来操作css，css更改之后，打包出来的css的chunkHash没变，使得线上模板依然引用的是这个[chunkHash].css(因为原来的css还在缓存里面，间接使得更改的css没有生效) 
+ *
+ * 代码分割(code spliting 技术异步加载)?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包
  * new webpack.DefinePlugin()? http://www.jianshu.com/p/40d3ebd47f79 
  *
  * redux redux原理   setState()   co
@@ -84,6 +89,16 @@ module.exports = {
                     fallback: "style-loader", //编译后用什么loader来提取css文件
                     use: ['css-loader?importLoaders=1&minimize','postcss-loader','less-loader']  //loader会依次处理，上面的loader作废
                })
+            },
+            {
+                test: /\.(png|jpe?g|gif)(\?.*)?$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 10240,
+                        name: './assets/imgs/[name].[hash:7].[ext]'
+                    }
+                }
             }
         ]
     },
@@ -101,8 +116,8 @@ module.exports = {
 
         // new ExtractTextPlugin('styles.css'),
         // extractCSS,
-        // extractLESS,
-        new ExtractTextPlugin('style/[name].css',{allChunks: true}),
+        // extractLESS,  
+        new ExtractTextPlugin('style/[name]-[contenthash].css',{allChunks: true}),
 
         new webpack.DefinePlugin({   //可在production环境下帮助删除重复或相似文件，可以有效减少文件大小（用于打包文件优化，建议使用在生产环境）
             "process.env":{

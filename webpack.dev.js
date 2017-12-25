@@ -15,10 +15,27 @@
  * http-server  http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html  https://www.npmjs.com/package/http-server
  * constructor super(props)  <在ES6中的class语法中，只要你的class是子类，那必须得调用super，换句话说，有constructor就得有super> https://segmentfault.com/a/1190000008165717
  * 仅当你想在constructor内使用props才将props传入super(把props传入super，为了在constructor中访问props)  https://segmentfault.com/a/1190000008165717
+ * layout中的meta设置   https://www.jianshu.com/p/739d7ce9c6fe  https://segmentfault.com/a/1190000002407912  http://blog.csdn.net/rogerjava/article/details/17123593  https://www.zhihu.com/question/22431667
+ * ios将网页添加到主屏title,icon  https://www.cnblogs.com/jaxu/p/5007823.html   https://www.zhihu.com/question/19572446  
+ * 
+ * 高清图 dpr  http://www.cocoachina.com/webapp/20150715/12585.html (保证图片显示的精细，物理像素点正常的需要多)
+ * 对于retina屏幕(如: dpr=2)，为了达到高清效果，视觉稿的画布大小会是基准的2倍，也就是说像素点个数是原来的4倍（对iphone6而言：原先的375×667，就会变成750×1334）。
+ * window.devicePixelRatio获取到当前设备的dpr   
+ * dpr(设备像素比) = 物理像素(css像素) / 设备独立像素   默认prd为750
+ * 高清图   oss存储(缩放)   根据不同的dpr来显示不同的图片         安装两个loader(url & file)  在文件大于limit时，交于file处理 
+ *  
+ * chunkHash     https://segmentfault.com/a/1190000012469443#articleHeader14       http://www.cnblogs.com/ihardcoder/p/5623411.html
+ * chunkHash      hash在js和css中不实用，所以在项目中所有的js都准备用chunkHash,img、font中是没有chunkHash的，仍然需要用到hash
+ * js和js引入的css的chunkhash是相同的,css是使用ExtractTextPlugin插件引入的，这时候可以使用到这个插件提供的contenthash
+ * 使用chunkHash来操作css，css更改之后，打包出来的css的chunkHash没变，使得线上模板依然引用的是这个[chunkHash].css(因为原来的css还在缓存里面，间接使得更改的css没有生效)
  *
+<<<<<<< HEAD
  * 高清图？dpr？图压缩吕大豹？ nuxt？测试pad视频(genertor)
+=======
+ * 图压缩吕大豹  合并？  打包之后查看添加网页(拷贝图片  参数问题需要fixed)?
+>>>>>>> 6fdba5c501675af72a9f39dc7b2852bc6a389c45
  * nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
- * 装饰器&&注解？ 
+ * 装饰器&&注解？nuxt？
  * toString ?
  *
  * es6课程结束掉？react开发webapp，美团(12h)  https://www.imooc.com/learn/868
@@ -102,6 +119,16 @@ module.exports = {
             {
                 test: /\.less$/,
                 use: ['style-loader','css-loader?importLoaders=1','postcss-loader','less-loader'] //less-loader需要依赖less才能实现。如果用的npm3.0+，less是不会随着less-loader自动安装的，需要手动安装
+            },
+            {
+                test: /\.(png|jpe?g|gif)(\?.*)?$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 10240,
+                        name: './assets/imgs/[name].[hash].[ext]'
+                    }
+                }
             }
         ]
     },
