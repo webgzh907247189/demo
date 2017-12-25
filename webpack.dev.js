@@ -16,7 +16,7 @@
  * constructor super(props)  <在ES6中的class语法中，只要你的class是子类，那必须得调用super，换句话说，有constructor就得有super> https://segmentfault.com/a/1190000008165717
  * 仅当你想在constructor内使用props才将props传入super(把props传入super，为了在constructor中访问props)  https://segmentfault.com/a/1190000008165717
  *
- * 高清图？dpr？图压缩吕大豹？ nuxt？
+ * 高清图？dpr？图压缩吕大豹？ nuxt？测试pad视频(genertor)
  * nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
  * 装饰器&&注解？ 
  * toString ?
