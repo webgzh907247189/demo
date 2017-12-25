@@ -5,6 +5,8 @@ import Testa from 'component/Testa'
 import TestHistory from 'component/TestHistory'
 import TestChildren from 'component/TestChildren'
 import TestParent from 'component/TestParent'
+import AsynchronousLoade from 'component/AsynchronousLoade'
+import EnsureTest from 'component/EnsureAsync'
 import Layout from 'component/Layout'
 
 // import ChildrenRoute from 'component/ChildrenRoute'
@@ -38,8 +40,10 @@ const Routers = () =>
 				<Route exact path='/test-navlink' component={TestNavlink} />
 				<Route exact path='/testa' component={Testa}/>
 				<Route exact path='/test-history' component={TestHistory}/>
-				<Route exact path='/test-children' component={TestChildren}/>
-
+				<Route exact path='/test-children' component={TestChildren}/>	
+				<Route exact path='/async-test' component={AsynchronousLoade}/>	
+				<Route exact path='/ensure-test' component={EnsureTest}/>
+				
 				<Route  path='/a' component={TestParent}/>			
 				
 				<Redirect to='/test-navlink'/>

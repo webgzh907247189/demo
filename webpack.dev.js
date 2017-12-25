@@ -32,10 +32,17 @@
  * 使用node读文件并且指定字符编码，在写的时候也需要指定相同的字符编码  (未指定字符编码,则返回原始的 buffer)
  * 图压缩  http://blog.csdn.net/stanxl/article/details/78639608  https://github.com/tcoopman/image-webpack-loader  https://mp.weixin.qq.com/s?__biz=MzI5NjE1OTI1OA==&mid=2649452464&idx=1&sn=532f9b7733d914cf71af4205bead291f&chksm=f4575ec5c320d7d33c75a630e953fac7e77bb0e8b32a98fde7259acc48bc2d8c9658e09c6590&mpshare=1&scene=1&srcid=1220tnM5aIeZJOqN6wgPCNYN#rd
  *
- * 测试pad视频(genertor)
+ * webpack优化点  使用缓存   https://www.cnblogs.com/Leo_wl/p/5248954.html  
+ * Http头对文件设置很大的max-age，例如1年。同时，给每个文件命名上带上该文件的版本号，例如把文件的hash值做为版本号，topic. ef8bed6c.js。即是让文件很长时间不过期。
+ * 当文件没有更新时，使用缓存的文件自然不会出错；
+ * 当文件已经有更新时，其hash值必然改变，此时文件名变了，自然不存在此文件的缓存，于是浏览器会去加载最新的文件。
+ * 浏览器给这种缓存方式的缓存容量太少了，只有12Mb，且不分Host。所以更极致的做法是以文件名为Key，文件内容为value，缓存在localStorage里，命中则从缓存中取，不命中则去服务器取，虽然缓存容量也只有5Mb，但是每个Host是独享这5Mb的。
+ *
+ * 测试pad视频(genertor)?tree shaking移除多余export代码?  https://zhuanlan.zhihu.com/p/27283107?utm_source=weibo&utm_medium=social?
+ * ?  https://zhuanlan.zhihu.com/p/30248068?inline?npm i html-webpack-inline-source-plugin --save-dev?
  * nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
  * 装饰器&&注解？nuxt？
- * toString ?
+ * toString ?缓存配置max-age?
  *
  * es6课程结束掉？react开发webapp，美团(12h)  https://www.imooc.com/learn/868
  * 7天微信项目，聊天项目，node部署上线，nginx，rn(https://coding.imooc.com/class/56.html#Anchor)
@@ -75,7 +82,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname,'./dist'),
         filename: 'js/[name].bundle.js',
-        publicPath: '/'
+        publicPath: '/',
+        chunkFilename: 'js/[name].chunk.js'
     },
     devtool: 'inline-source-map', //里面储存着位置信息。也就是说，转换后的代码的每一个位置，所对应的转换前的位置。有了它，出错的时候，除错工具将直接显示原始代码，而不是转换后的代码
     resolve:{
@@ -87,7 +95,7 @@ module.exports = {
         },
         mainFiles: ['index','index.web'], //解析目录时要使用的文件名
         modules: [path.resolve(__dirname, "src"), "node_modules"], //如果你想要添加一个目录到模块搜索目录，此目录优先于 node_modules/ 搜索
-        mainFields: ["browser", "module", "main"]
+        mainFields: ["jsnext:main","main","browser", "module"]
     },
     module: {
         rules: [

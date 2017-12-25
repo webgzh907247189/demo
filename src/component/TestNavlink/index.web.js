@@ -56,8 +56,15 @@ class TestNavlink extends Component{
 		return num == 1 ? true : false
 	}
 
+	asyncTset(){
+		const { match, location, history } = this.props
+		history.push({pathname:'/async-test',search:'use=asyncTest'})  //默认是加上'?'(search)
+	}
+
 	render(){
 		return (<div>
+			<div onClick={this.asyncTset.bind(this)} className='async-tset'><a>异步加载测试,通过import()</a></div>
+			<NavLink to='/ensure-test'>异步加载测试,通过require.Ensure()</NavLink>
 			<div className='react-test' ref='react-test' onClick={this.jumpClick.bind(this)} >
 				react组件测试，使用this.props.location.push()跳转到testa
 				<div className='img-test'></div>

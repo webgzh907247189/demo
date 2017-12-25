@@ -22,4 +22,7 @@ function getLocationQuery(){
 	return obj
 }
 
+function testTreeShak(){
+	console.log('测试Tree Shaking,在生产环境的bundle.js中应该没有这个函数')
+}
 export { objToArr, getLocationQuery }

@@ -22,7 +22,16 @@
  * 使用chunkHash来操作css，css更改之后，打包出来的css的chunkHash没变，使得线上模板依然引用的是这个[chunkHash].css(因为原来的css还在缓存里面，间接使得更改的css没有生效) 
  * 
  * webpack.DefinePlugin()  https://zhuanlan.zhihu.com/p/30248068 (设置它，就可以忘记开发和发布构建的规则)
- * 代码分割(code spliting 技术异步加载)?UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod？jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包
+ * 代码分割(code spliting 异步加载《首屏需要的同步加载，首屏过后才需要的则按需加载(异步)》。不分割，静态资源可能出现串行加载。)   https://www.jianshu.com/p/547aa7b92d8c  http://www.css88.com/doc/webpack2/guides/code-splitting-require
+ *
+ * webpack优化点  使用缓存   https://www.cnblogs.com/Leo_wl/p/5248954.html  
+ * Http头对文件设置很大的max-age，例如1年。同时，给每个文件命名上带上该文件的版本号，例如把文件的hash值做为版本号，topic. ef8bed6c.js。即是让文件很长时间不过期。
+ * 当文件没有更新时，使用缓存的文件自然不会出错；
+ * 当文件已经有更新时，其hash值必然改变，此时文件名变了，自然不存在此文件的缓存，于是浏览器会去加载最新的文件。
+ * 浏览器给这种缓存方式的缓存容量太少了，只有12Mb，且不分Host。所以更极致的做法是以文件名为Key，文件内容为value，缓存在localStorage里，命中则从缓存中取，不命中则去服务器取，虽然缓存容量也只有5Mb，但是每个Host是独享这5Mb的。
+ *
+ *
+ * UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod,thunks？jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包
  *
  *
  * redux redux原理   setState()   co
@@ -34,6 +43,7 @@ const webpack = require('webpack');
 const path = require('path')
 const HtmlWebPlugin = require('html-webpack-plugin')
 const webpackDevServer = require('webpack-dev-server')
+// const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractCSS = new ExtractTextPlugin('style/styleCss.css');
@@ -44,13 +54,13 @@ module.exports = {
         common: 'babel-polyfill',
         index: './index.js',
         appTest: './apptest.js',
-        vendor: ['lodash']
+        vendor: ['react','lodash']
     },
     output: {
         path: path.resolve(__dirname,'./dist'),
         filename: 'js/[name].bundle.[chunkHash].js', //https://github.com/zhenyong/Blog/issues/1
         publicPath: '/',
-        chunkFilename: '[chunkHash].js'
+        chunkFilename: 'js/[name].[chunkHash].js'
     },
     devtool: 'nosources-source-map', //里面储存着位置信息。也就是说，转换后的代码的每一个位置，所对应的转换前的位置。有了它，出错的时候，除错工具将直接显示原始代码，而不是转换后的代码
     resolve:{
@@ -61,7 +71,7 @@ module.exports = {
         },
         mainFiles: ['index','index.web'], //解析目录时要使用的文件名
         modules: [path.resolve(__dirname, "src"), "node_modules"], //如果你想要添加一个目录到模块搜索目录，此目录优先于 node_modules/ 搜索
-        mainFields: ["browser", "module", "main"]
+        mainFields: ["jsnext:main","main","browser", "module"]  //webpack先使用jsnext:main字段，在没有时使用main字段。这样就可以优化支持tree-shaking的库
     },
     module: {
         rules: [
@@ -119,8 +129,14 @@ module.exports = {
             // minChunks: 2, //引用次数
             // chunks: ['index','appTest'] //只有在index.js和appTest.js中都引用的模块才会被打包的到公共模块（这里即common.js）
 
-            names: ['vendor','runtime']
+            names: ['vendor','runtime'],
+            minChunks: Infinity  //防止其他代码被打包进来
         }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     children: true,                           // // (选择所有被选 chunks 的子 chunks)
+        //     async: true,                              // (异步加载)
+        //     minChunks: 3                              // (模块必须被 3个 入口chunk 共享)
+        // }),
 
         // new ExtractTextPlugin('styles.css'),
         // extractCSS,
@@ -157,7 +173,8 @@ module.exports = {
                 collapseInlineTagWhitespace: false,
                 removeComments:true, //移除HTML中的注释
                 collapseWhitespace: true  //压缩html模板(生产)
-            }
-        })
+            },
+        }),
+        // new HtmlWebpackInlineSourcePlugin()
     ]
 }
