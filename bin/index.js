@@ -22,8 +22,8 @@ let findSync = function (startPath) {
 
 let readImg = function (tplPath) {
   return new Promise(function (resolve, reject) {
-    fs.readFile(tplPath, (err, data) => {        //'binary' 添加参数能正确读写，但是打开没内容，不添加参数正常
-      data && resolve(data)
+    fs.readFile(tplPath, 'binary',(err, data) => {    //如果未指定字符编码,则返回原始的 buffer。
+      data && resolve(data)                           //'binary' 在读的时候添加的字符编码,在写的时候也需要指定字符编码
       err && reject(err)
     })
   })
@@ -31,7 +31,7 @@ let readImg = function (tplPath) {
 
 let writePic = function (target, data) {
   return new Promise(function (resolve, reject) {
-    fs.writeFile(target, data, function (err) {
+    fs.writeFile(target, data, 'binary',function (err) {    //'binary' 在读的时候添加的字符编码,在写的时候也需要指定字符编码
       err ? reject(err) : resolve(data)
     })
   })
