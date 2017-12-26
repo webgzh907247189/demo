@@ -38,7 +38,7 @@
  * 当文件已经有更新时，其hash值必然改变，此时文件名变了，自然不存在此文件的缓存，于是浏览器会去加载最新的文件。
  * 浏览器给这种缓存方式的缓存容量太少了，只有12Mb，且不分Host。所以更极致的做法是以文件名为Key，文件内容为value，缓存在localStorage里，命中则从缓存中取，不命中则去服务器取，虽然缓存容量也只有5Mb，但是每个Host是独享这5Mb的。
  *
- * 测试pad视频(genertor)?tree shaking移除多余export代码?  https://zhuanlan.zhihu.com/p/27283107?utm_source=weibo&utm_medium=social?
+ * 测试pad视频(genertor)?tree shaking移除多余export代码?  异步加载？https://zhuanlan.zhihu.com/p/27283107?utm_source=weibo&utm_medium=social?
  * ?  https://zhuanlan.zhihu.com/p/30248068?inline?npm i html-webpack-inline-source-plugin --save-dev?
  * nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
  * 装饰器&&注解？nuxt？
