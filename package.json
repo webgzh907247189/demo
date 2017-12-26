@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "preprod": "rimraf ./dist/",
-    "prod": "webpack --display-modules --display-chunks --color --config webpack.prod.js",
+    "prod": "cross-env NODE_ENV=production webpack --display-modules --display-chunks --color --config webpack.prod.js",
     "postprod": "node ./bin/index.js",
     "start": "webpack-dev-server --color --config  webpack.dev.js",
     "startTest": "webpack-dev-server --hot --inline --content-base --color --config  webpack.dev.js",
@@ -37,9 +37,11 @@
     "es3ify-loader": "^0.2.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
+    "html-webpack-inline-source-plugin": "0.0.9",
     "html-webpack-plugin": "^2.30.1",
     "http-server": "^0.10.0",
     "image-webpack-loader": "^3.4.2",
+    "isomorphic-fetch": "^2.2.1",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "nodemon": "^1.12.4",
@@ -64,7 +66,6 @@
     "body-parser": "^1.18.2",
     "ejs": "^2.5.7",
     "fastclick": "^1.0.6",
-    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4"
   }
 }

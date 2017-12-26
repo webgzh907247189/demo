@@ -30,9 +30,11 @@
  * 当文件已经有更新时，其hash值必然改变，此时文件名变了，自然不存在此文件的缓存，于是浏览器会去加载最新的文件。
  * 浏览器给这种缓存方式的缓存容量太少了，只有12Mb，且不分Host。所以更极致的做法是以文件名为Key，文件内容为value，缓存在localStorage里，命中则从缓存中取，不命中则去服务器取，虽然缓存容量也只有5Mb，但是每个Host是独享这5Mb的。
  *
+ * HtmlWebPlugin(需要注意插入的顺序,特别是自动插入的情况)  https://www.cnblogs.com/wonyun/p/6030090.html
+ * HtmlWebpackInlineSourcePlugin(合并小的js&css进入inline)  https://github.com/DustinJackson/html-webpack-inline-source-plugin
+ * 编写自己的wepack插件  https://www.cnblogs.com/sampapa/p/6958166.html  http://www.css88.com/doc/webpack2/api/plugins/  https://segmentfault.com/a/1190000004279560 
  *
- * UglifyJsPlugin兼容IE8? ?HtmlWebPlugin需不需要在prod,thunks？jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包
- *
+ * UglifyJsPlugin兼容IE8? ?jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包
  *
  * redux redux原理   setState()   co
  */
@@ -43,7 +45,8 @@ const webpack = require('webpack');
 const path = require('path')
 const HtmlWebPlugin = require('html-webpack-plugin')
 const webpackDevServer = require('webpack-dev-server')
-// const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const DeleteChunksPlugin = require('./webpack.delete.chunks.plugin.js')
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractCSS = new ExtractTextPlugin('style/styleCss.css');
@@ -167,14 +170,18 @@ module.exports = {
         new HtmlWebPlugin({
             filename: 'detail.html',
             template: './index.html',
-            thunks: ['common','index', 'appTest'],
-            inject: 'body',
+            chunks: ['common','index', 'appTest','vendor','runtime'],   //允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
+            inject: 'body',  // body等同true的效果   (所有JavaScript资源插入到body元素的底部)
             minify: {
                 collapseInlineTagWhitespace: false,
                 removeComments:true, //移除HTML中的注释
                 collapseWhitespace: true  //压缩html模板(生产)
             },
+            inlineSource: 'runtime.bundle.[a-z0-9]{20}.js$'
         }),
-        // new HtmlWebpackInlineSourcePlugin()
+        new HtmlWebpackInlineSourcePlugin(),   // https://github.com/DustinJackson/html-webpack-inline-source-plugin
+        new DeleteChunksPlugin({
+            chunks: ['runtime']
+        })
     ]
 }

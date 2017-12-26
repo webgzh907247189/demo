@@ -1,5 +1,5 @@
 import arrMap from './src/common'
-import fetch from 'isomorphic-fetch'
+// import fetch from 'isomorphic-fetch'
 import attachFastClick from 'fastclick'
 import {objToArr} from 'util/index'
 import _ from 'lodash'
@@ -34,13 +34,13 @@ function test(arg){
 
 
 
-fetch('/api/data').then(function(res) {
-  return res.json();
-}).then(function(data) {
-  console.log(data);
-}).catch(function(e) {
-  console.log("Oops, error");
-});
+// fetch('/api/data').then(function(res) {
+//   return res.json();
+// }).then(function(data) {
+//   console.log(data);
+// }).catch(function(e) {
+//   console.log("Oops, error");
+// });
 
 
 
