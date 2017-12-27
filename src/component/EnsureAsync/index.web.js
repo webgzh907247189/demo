@@ -21,7 +21,7 @@ const EnsureTest = (props) => (
     <Bundle load={(cb) => {
         require.ensure([], require => {
             cb(require('./test'));
-        });
+        },'ensureTest');
     }}>
     {(Chat) => <Chat {...props}/>}
   </Bundle>

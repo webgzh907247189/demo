@@ -19,6 +19,7 @@ arrMap(arr)
 
 
 
+// testTreeShak()
 
 let obj = {aaa: '1111',bbb: '2222'}
 for(let [key, value] of objToArr(obj)){

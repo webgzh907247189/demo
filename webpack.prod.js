@@ -34,6 +34,10 @@
  * HtmlWebpackInlineSourcePlugin(合并小的js&css进入inline)  https://github.com/DustinJackson/html-webpack-inline-source-plugin
  * 编写自己的wepack插件  https://www.cnblogs.com/sampapa/p/6958166.html  http://www.css88.com/doc/webpack2/api/plugins/  https://segmentfault.com/a/1190000004279560 
  *
+ * webpack-bundle-analyzer    https://segmentfault.com/a/1190000008151173
+ * UglifyJsPlugin    https://zhuanlan.zhihu.com/p/27283107?utm_source=weibo&utm_medium=social
+ * 配置可以打第三方库和commons的包     https://github.com/webpack/webpack/tree/master/examples/common-chunk-and-vendor-chunk         https://www.zhihu.com/question/40503584?sort=created    
+ *
  * UglifyJsPlugin兼容IE8? ?jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包
  *
  * redux redux原理   setState()   co
@@ -47,6 +51,7 @@ const HtmlWebPlugin = require('html-webpack-plugin')
 const webpackDevServer = require('webpack-dev-server')
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const DeleteChunksPlugin = require('./webpack.delete.chunks.plugin.js')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractCSS = new ExtractTextPlugin('style/styleCss.css');
@@ -127,19 +132,18 @@ module.exports = {
         jquery: "window.jQuery" //如果要全局引用jQuery，不管你的jQuery有没有支持模块化，用externals就对了。
     },
     plugins: [
+        // new BundleAnalyzerPlugin(),  //webpack打包分析
+
         new webpack.optimize.CommonsChunkPlugin({
             // name: 'common', //多入口，模块重复引用，分文件输出（将多次引用的模块打包到公共模块） 
             // minChunks: 2, //引用次数
             // chunks: ['index','appTest'] //只有在index.js和appTest.js中都引用的模块才会被打包的到公共模块（这里即common.js）
 
-            names: ['vendor','runtime'],
-            minChunks: Infinity  //防止其他代码被打包进来
+            names: ['commonss','vendor','runtime'],
+            minChunks: 2
+            // minChunks: Infinity  //防止其他代码被打包进来(只是框架代码,业务的公共代码不会进来)
         }),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     children: true,                           // // (选择所有被选 chunks 的子 chunks)
-        //     async: true,                              // (异步加载)
-        //     minChunks: 3                              // (模块必须被 3个 入口chunk 共享)
-        // }),
+
 
         // new ExtractTextPlugin('styles.css'),
         // extractCSS,
@@ -158,11 +162,13 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 properties: false,
-                warnings: false,
+                warnings: false,  // 在UglifyJs删除没有用到的代码时不输出警告
+                reduce_vars: true, // 提取出出现多次但是没有定义成变量去引用的静态值
+                drop_console: true // 删除所有的 `console` 语句  还可以兼容ie浏览器
             },
             output: {
-                comments: false,
-                beautify: false, //美化输出(是否美化输出)
+                comments: false, // 删除所有的注释
+                beautify: false, // 最紧凑的输出(是否 最紧凑的输出  ->  美化输出)
                 quote_keys: true
             },
             sourceMap: false  //生成SourceMap文件，会导致编译过程变慢，默认true (将错误信息的位置映射到模块)
@@ -170,7 +176,7 @@ module.exports = {
         new HtmlWebPlugin({
             filename: 'detail.html',
             template: './index.html',
-            chunks: ['common','index', 'appTest','vendor','runtime'],   //允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
+            chunks: ['common','index', 'appTest','vendor','runtime','commonss'],   //允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
             inject: 'body',  // body等同true的效果   (所有JavaScript资源插入到body元素的底部)
             minify: {
                 collapseInlineTagWhitespace: false,
