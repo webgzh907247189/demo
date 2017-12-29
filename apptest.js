@@ -51,4 +51,9 @@ div.id = 'create-element-by-test'
 div.textContent = 'this is test for createElement'
 document.body.appendChild(div)
 
+
+
+
+
+
 if(module.hot) module.hot.accept()

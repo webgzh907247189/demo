@@ -40,10 +40,3 @@ export { objToArr, getLocationQuery, testTreeShak }
 // 恢复.babelrc配置，在文件import testTreeShak                                bundle 没有这个函数
 // 恢复.babelrc配置，没有在文件import testTreeShak                            bundle 没有这个函数
 // 恢复.babelrc配置，没有在文件import testTreeShak 且加上去除console的配置    bundle 没有这个函数
-
-
-
-
-
-// 6个 639k
-// 7个 634k

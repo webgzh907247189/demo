@@ -8,6 +8,7 @@ import TestParent from 'component/TestParent'
 import AsynchronousLoade from 'component/AsynchronousLoade'
 import EnsureTest from 'component/EnsureAsync'
 import Layout from 'component/Layout'
+import ReduxTest from 'component/ReduxTest'
 
 // import ChildrenRoute from 'component/ChildrenRoute'
 // import TestGrandson from 'component/TestGrandson'
@@ -43,7 +44,8 @@ const Routers = () =>
 				<Route exact path='/test-children' component={TestChildren}/>	
 				<Route exact path='/async-test' component={AsynchronousLoade}/>	
 				<Route exact path='/ensure-test' component={EnsureTest}/>
-				
+				<Route exact path='/redux-test' component={ReduxTest}/>
+
 				<Route  path='/a' component={TestParent}/>			
 				
 				<Redirect to='/test-navlink'/>

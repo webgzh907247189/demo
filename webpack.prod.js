@@ -1,7 +1,6 @@
 /*
  * 添加支持es3的配置
  * https://github.com/zuojj/fedlab/issues/5
- * CommonsChunkPlugin公共模块抽取  https://segmentfault.com/a/1190000006808865
  * 抽取类库或框架(解决重复加载)  一开始通过先打包，在MD5形式判定文件(库或框架)有没有更改  http://cnodejs.org/topic/58396960c71e606e36aed1db   https://segmentfault.com/a/1190000006808865   https://github.com/zhenyong/Blog/issues/1
  * devtool  source-map  http://www.css88.com/doc/webpack2/configuration/devtool/
  * 打包完成之后的检验工作(打包是否正常) nginx验收或者npm run runDist -> 预发布<见 .md>  https://www.cnblogs.com/saysmy/p/6609796.html  https://www.cnblogs.com/tuojunjie/p/6229773.html
@@ -36,9 +35,13 @@
  *
  * webpack-bundle-analyzer    https://segmentfault.com/a/1190000008151173
  * UglifyJsPlugin    https://zhuanlan.zhihu.com/p/27283107?utm_source=weibo&utm_medium=social
- * 配置可以打第三方库和commons的包     https://github.com/webpack/webpack/tree/master/examples/common-chunk-and-vendor-chunk         https://www.zhihu.com/question/40503584?sort=created    
  *
- * UglifyJsPlugin兼容IE8? ?jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包
+ * 配置可以打第三方库和commons的包     https://github.com/webpack/webpack/tree/master/examples/common-chunk-and-vendor-chunk         https://www.zhihu.com/question/40503584?sort=created    
+ * CommonsChunkPlugin公共模块抽取  https://segmentfault.com/a/1190000006808865
+ *
+ * UglifyJsPlugin兼容IE8   https://github.com/zuojj/fedlab/issues/5
+ *
+ * jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包
  *
  * redux redux原理   setState()   co
  */
@@ -70,7 +73,7 @@ module.exports = {
         publicPath: '/',
         chunkFilename: 'js/[name].[chunkHash].js'
     },
-    devtool: 'nosources-source-map', //里面储存着位置信息。也就是说，转换后的代码的每一个位置，所对应的转换前的位置。有了它，出错的时候，除错工具将直接显示原始代码，而不是转换后的代码
+    devtool: 'nosources-source-map', //('inline-source-map') 里面储存着位置信息。也就是说，转换后的代码的每一个位置，所对应的转换前的位置。有了它，出错的时候，除错工具将直接显示原始代码，而不是转换后的代码
     resolve:{
         extensions: ['.js','.web.js','.jsx','.json', '.scss'],
         alias: {
@@ -86,7 +89,7 @@ module.exports = {
             {
                 test: /\.js?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader'         //'babel-loader?cacheDirectory'   babel的缓存编译结果
             },
 
             // {
@@ -139,6 +142,8 @@ module.exports = {
             // minChunks: 2, //引用次数
             // chunks: ['index','appTest'] //只有在index.js和appTest.js中都引用的模块才会被打包的到公共模块（这里即common.js）
 
+            // names: ['vendor','runtime']
+
             names: ['commonss','vendor','runtime'],
             minChunks: 2
             // minChunks: Infinity  //防止其他代码被打包进来(只是框架代码,业务的公共代码不会进来)
@@ -161,15 +166,19 @@ module.exports = {
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
-                properties: false,
-                warnings: false,  // 在UglifyJs删除没有用到的代码时不输出警告
+                properties: false,  /* 兼容IE8 */
+                warnings: false,   // 在UglifyJs删除没有用到的代码时不输出警告
                 reduce_vars: true, // 提取出出现多次但是没有定义成变量去引用的静态值
                 drop_console: true // 删除所有的 `console` 语句  还可以兼容ie浏览器
             },
+            mangle: {
+                screw_ie8: false,    /* 兼容IE8(把支持IE8的代码clear掉) */
+                keep_fnames: true
+            },
             output: {
-                comments: false, // 删除所有的注释
-                beautify: false, // 最紧凑的输出(是否 最紧凑的输出  ->  美化输出)
-                quote_keys: true
+                quote_keys: true,   /* 兼容IE8 */
+                comments: false,   // 删除所有的注释
+                beautify: false    // 最紧凑的输出(是否 最紧凑的输出  ->  美化输出)
             },
             sourceMap: false  //生成SourceMap文件，会导致编译过程变慢，默认true (将错误信息的位置映射到模块)
         }),

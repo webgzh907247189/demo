@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import attachFastClick from 'fastclick'
 import App from './src/app.js'
- 
+
+import { Provider } from 'react-redux'
+import store from './src/configStore'
+
 attachFastClick.attach(document.body)
 
 /**
@@ -13,9 +16,11 @@ attachFastClick.attach(document.body)
  */
 const render = (App) => {
 	ReactDOM.render(
-      	<AppContainer>
-        	<App/>
-    	</AppContainer>,
+		<Provider store={store}>		
+			<AppContainer store={store}>
+	        	<App/>
+	    	</AppContainer>
+		</Provider>,
     document.getElementById('root')
     );
 }
