@@ -43,7 +43,7 @@
  *
  * jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包
  *
- * redux redux原理   setState()   co
+ * setState()   co
  */
 
 
@@ -82,7 +82,7 @@ module.exports = {
         },
         mainFiles: ['index','index.web'], //解析目录时要使用的文件名
         modules: [path.resolve(__dirname, "src"), "node_modules"], //如果你想要添加一个目录到模块搜索目录，此目录优先于 node_modules/ 搜索
-        mainFields: ["jsnext:main","main","browser", "module"]  //webpack先使用jsnext:main字段，在没有时使用main字段。这样就可以优化支持tree-shaking的库
+        mainFields: ["browser","main","jsnext:main","module"]  //webpack先使用jsnext:main字段，在没有时使用main字段。这样就可以优化支持tree-shaking的库
     },
     module: {
         rules: [

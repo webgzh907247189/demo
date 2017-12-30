@@ -43,10 +43,24 @@
  *
  * react的异步加载以及其他优化点  https://zhuanlan.zhihu.com/p/30248068      https://zhuanlan.zhihu.com/p/27283107
  *
- * 测试pad视频(genertor) ? webpack-spritesmith
+ * 装饰器 && 注解   https://aotu.io/notes/2016/10/24/decorator/index.html   https://github.com/rccoder/blog/issues/23    https://my.oschina.net/wanjubang/blog/861913
+ * 当装饰器作用于类本身的时候，我们操作的对象(target)  也是这个类本身
+ * 而当装饰器作用于类的某个具体的属性的时候，我们操作的对象既不是类本身，也不是类的属性，而是它的描述符（descriptor）,descriptor记录着我们对这个属性的全部信息，所以，我们可以对它自由的进行扩展和封装，
+ * Object.defineProperty(target, name, descriptor) 
+ *
+ * toString   https://www.cnblogs.com/imwtr/p/4392041.html   (“1” == true,true首先转换为1，然后再执行比较。接下来字符串“1”也转换成了数字1，相等，所以返回true  ->  转为数字比较)
+ * 对于所有非日期对象来说，对象到原始值的转换基本上是对象到数字的转换   优先调用valueOf 
+ * “+"运算符可以进行数学加法和字符串连接操作。如果他它的其中一个操作数是对象，则js将使用特殊的方法将对象转换成原始值  (valueOf)
+ * "-“,”<",”==“ 把两个操作数都转换成数字 (优先valueOf)
+ * 
+ * redux  http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html    https://www.jianshu.com/p/7a71181a7aa0
+ * http://byevil.com/2016/01/25/dive-into-redux/    https://segmentfault.com/a/1190000009626788    https://www.cnblogs.com/wy1935/p/7109701.html      https://segmentfault.com/q/1010000008163213
+ *
+ *
+ * 测试pad视频(genertor decoration) ? webpack-spritesmith
  * nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
- * 装饰器&&注解？nuxt？fetch?
- * toString ?缓存配置max-age?
+ * nuxt？缓存配置max-age?
+ * 
  *
  * es6课程结束掉？react开发webapp，美团(12h)  https://www.imooc.com/learn/868
  * 7天微信项目，聊天项目，node部署上线，nginx，rn(https://coding.imooc.com/class/56.html#Anchor)
@@ -100,7 +114,7 @@ module.exports = {
         },
         mainFiles: ['index','index.web'], //解析目录时要使用的文件名
         modules: [path.resolve(__dirname, "src"), "node_modules"], //如果你想要添加一个目录到模块搜索目录，此目录优先于 node_modules/ 搜索
-        mainFields: ["jsnext:main","main","browser", "module"]
+        mainFields: ["browser","main","jsnext:main", "module"]
     },
     module: {
         rules: [
