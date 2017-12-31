@@ -64,7 +64,7 @@
  *
  * es6课程结束掉？react开发webapp，美团(12h)  https://www.imooc.com/learn/868
  * 7天微信项目，聊天项目，node部署上线，nginx，rn(https://coding.imooc.com/class/56.html#Anchor)
- * scott微信小程序(vue+node+mongo https://coding.imooc.com/class/119.html#Anchor  https://coding.imooc.com/class/113.html)
+ * scott微信小程序(vue+node+mongo https://coding.imooc.com/class/119.html#Anchor(24)  https://coding.imooc.com/class/113.html(18))
  */
 
 const webpack = require('webpack');
