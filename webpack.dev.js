@@ -57,7 +57,7 @@
  * http://byevil.com/2016/01/25/dive-into-redux/    https://segmentfault.com/a/1190000009626788    https://www.cnblogs.com/wy1935/p/7109701.html      https://segmentfault.com/q/1010000008163213
  *
  *
- * 测试pad视频(genertor decoration) ? webpack-spritesmith
+ * webpack-spritesmith
  * nodeType nodeName? ios safari隐藏模式下localStorage.getItem()报错
  * nuxt？缓存配置max-age?
  * 
