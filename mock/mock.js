@@ -4,6 +4,7 @@ module.exports = {
 		sex: '222'
 	},
 	json2: {
-		name: 'post'
+		name: 'post',
+		text: 'post测试'
 	}
 }

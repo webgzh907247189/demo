@@ -1,6 +1,8 @@
 import React,{ Component } from 'react'
 import { NavLink,withRouter,browserHistory,Prompt } from 'react-router-dom'
 import ReactDOM from 'react-dom'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
+
 import './index.less'
 
 
@@ -14,6 +16,7 @@ import './index.less'
 class TestNavlink extends Component{
 	constructor(props){
 		super(props)
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
 	}
 
 	componentDidMount(){
@@ -28,6 +31,10 @@ class TestNavlink extends Component{
 		// ReactDOM.findDOMNode(reactTest) === reactTest //true
 		console.log(reactTest.style) //margin pading
 	}
+
+	// shouldComponentUpdate(nextProps,nextState){
+		//return true   //默认返回true,在state更新，props更新   默认是更新的(默认return true)，通过PureRenderMixin来处理那些情况不需要更新
+	// }
 
 	jumpClick(){
 		const { match, location, history } = this.props

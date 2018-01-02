@@ -137,6 +137,7 @@ module.exports = {
     plugins: [
         // new BundleAnalyzerPlugin(),  //webpack打包分析
 
+        new webpack.BannerPlugin('this is react demo'),
         new webpack.optimize.CommonsChunkPlugin({
             // name: 'common', //多入口，模块重复引用，分文件输出（将多次引用的模块打包到公共模块） 
             // minChunks: 2, //引用次数

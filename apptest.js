@@ -2,6 +2,7 @@ import arrMap from './src/common'
 import attachFastClick from 'fastclick'
 import {objToArr} from 'util/index'
 import _ from 'lodash'
+import fetch from "isomorphic-fetch";
 
 console.log(_.defaults({ 'a': 1 }, { 'a': 3, 'b': 2 }))
 
@@ -15,6 +16,27 @@ attachFastClick.attach(document.body)
 let arr = ['a','b','c']
 arrMap(arr)
 
+
+
+
+fetch('/api/post',{
+	 method: 'post',
+	 credentials: 'include',
+	 headers: {
+	 	'Accept': 'application/json, text/plain,*/*',
+	 	'Content-type': 'application/x-www-form-urlencoded'
+	 },
+	 body: JSON.stringify({a: 1,b: 2})
+})
+.then(function(res) {
+  // return res.text(); //转为字符串
+  return res.json();
+})
+.then(data => {
+		console.log('fetch测试',typeof(data))
+        console.log(data)
+    }
+)
 
 
 

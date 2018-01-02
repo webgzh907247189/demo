@@ -15,6 +15,7 @@ class Testa extends Component{
 	
 	render(){
 		return <div>
+			{/*jump组件(注释)*/}
 			<Jump/>
 			<a href='/test-history'>a标签跳转到test-history。111111</a>
 		</div>

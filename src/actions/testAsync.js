@@ -20,6 +20,14 @@ export function fetchTest(descripton,cb) {
 	}
 }
 
+export function showAge(data){
+    return {
+        type: 'showName',
+        data
+    }
+}
+
+
 //store.dispatch(action)
 
 

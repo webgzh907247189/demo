@@ -8,6 +8,7 @@ function testReducer(state = {}, action) {
 		case 'click':
 			return extend(newState,{name : 'reduxTest click'})
 		case 'showName':
+			newState.date1 = action.data
 			return extend(newState,{nameTest : 'reduxTest  展示name'})
 		case 'asyncTest':
 			newState.date = action.payload 

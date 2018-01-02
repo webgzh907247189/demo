@@ -1,4 +1,7 @@
-/*
+/* https://www.tuicool.com/articles/VNFZBbj   http://levy.work/2016-08-31-debug-react-key-with-performance-tool/  react性能问题
+ * https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab (含有额外的超链接 -> 教程)
+ * https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool
+ *
  * react-hot-loader3.0使用介绍  http://www.jianshu.com/p/b7accbae3a1c( Babel ES2015 preset配置成不使用Babel来编译ES2015的Module特性 ["es2015", { "modules": false }] )
  * webpack-dev-server信息提示  http://www.imooc.com/qadetail/240317?lastmedia=1
  * 配置sublime的IDE https://www.douban.com/note/613763618/   http://blog.csdn.net/wxl1555/article/details/69941451
@@ -162,6 +165,7 @@ module.exports = {
         jquery: "window.jQuery" //如果要全局引用jQuery，不管你的jQuery有没有支持模块化，用externals就对了。
     },
     plugins: [
+        new webpack.BannerPlugin('react demo'),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
 

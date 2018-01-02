@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware, combineReducers,compose } from 'redux'
 import {testReducer} from './reducers/reducer'
 import thunkMiddleware from 'redux-thunk';
 
@@ -9,11 +9,24 @@ const chatReducer = combineReducers({
 })
 
 let initState = {testReducer: {name:'redux测试',age:'111111111111'}}  // 初始化带有state，必须和reducer名字配套
-const store = createStore(chatReducer,initState,applyMiddleware(thunkMiddleware))
+
+
+let store
+// if(!(window.__REDUX_DEVTOOLS_EXTENSION__ || window.__REDUX_DEVTOOLS_EXTENSION__)){
+// 	store = createStore(chatReducer,initState,applyMiddleware(thunkMiddleware))
+// }else{
+// 	store = createStore(chatReducer,initState,compose(applyMiddleware(thunkMiddleware),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+// }
+
+
+const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
+store = createStoreWithMiddleware(chatReducer, initState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
 
 
 // let initState = {name:'redux测试',age:'111111111111'}
 // const store = createStore(chatReducer)
+
 
 export default store
 

@@ -13,10 +13,12 @@ Object.keys(api).map((item,index)=>{
 		'get': 'get',
 		'p': 'post',
 		'd': 'delete',
-		'p': 'put'
+		't': 'put'
 	}[item.includes(':') && item.substr(0,1) || 'get']
-
- 	app[method](item,(req,res,next)=>{
+	
+	let url = item.includes(':') && item.substr(2) || item
+	
+ 	app[method](url,(req,res,next)=>{
 		res.json(api[item])
 	})
 })
