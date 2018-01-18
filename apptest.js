@@ -58,6 +58,54 @@ function test(arg){
 
 
 
+{
+	let obj = {name: 'sh',sex: '男',age: '19'}
+	Reflect.deleteProperty(obj,'name')		// Reflect.deleteProperty() 删除使用的是 -> 键名
+	console.log(obj)
+
+	delete obj.name                        // delete obj.name 删除使用的是 -> 键值
+}
+{
+	function pick(obj){
+		// let argArr = Array.prototype.slice.call(arguments)
+		let argArr = [...arguments]
+
+		return argArr.reduce((result,item)=>{
+			// result[item] = obj[item]
+			// if(!obj[item]){
+			// 	delete result[item]
+			// }
+			
+			// (result[item] = obj[item]) || delete result[item]
+			(result[item] = obj[item]) || Reflect.deleteProperty(result,item)
+
+			return result
+		},Object.create(null))
+	}
+
+	let result = pick({name: 'sh',sex: '男',age: '19'},'sex','age')
+	console.log(result)   // {sex: "男", age: "19"}
+}
+{
+	function pick(obj,...keys){
+		return keys.reduce((result,item)=>{
+
+			// (result[item] = obj[item]) || delete result[item]
+			(result[item] = obj[item]) || Reflect.deleteProperty(result,item)
+
+			return result
+		},Object.create(null))
+	}
+
+	let result = pick({name: 'sh',sex: '男',age: '19'},'sex','age','name','aaa')
+	console.log(result)   // {sex: "男", age: "19"}
+}
+
+
+
+
+
+
 
 
 

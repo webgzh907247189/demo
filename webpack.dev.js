@@ -5,7 +5,7 @@
  * react-hot-loader3.0使用介绍  http://www.jianshu.com/p/b7accbae3a1c( Babel ES2015 preset配置成不使用Babel来编译ES2015的Module特性 ["es2015", { "modules": false }] )
  * webpack-dev-server信息提示  http://www.imooc.com/qadetail/240317?lastmedia=1
  * 配置sublime的IDE https://www.douban.com/note/613763618/   http://blog.csdn.net/wxl1555/article/details/69941451
- * 配置sublime的IDE自动补全  http://www.cnblogs.com/huangtailang/p/4499988.html  (enter || shift+enter || ctrl+enter)
+ * 配置sublime的IDE自动补全  http://www.cnblogs.com/huangtailang/p/4499988.html  (enter || shift+enter(space) || ctrl+enter)
  * react-router-dom   http://blog.csdn.net/u013938465/article/details/78604434
  * 路由变化，资源不会重新加载   使用NavLink或者官方的push()   禁止使用a标签
  * head -n 1 app.js || tail -n 2 app.js || grep 'react' app.js || cp app.ja apptest.js || mv app.js ../mock/appp.js
