@@ -112,6 +112,58 @@ function test(arg){
 
 
 
+{
+	{	
+		/**
+		 * 从技术上来讲，JavaScript 只允许按值传参。当我们给函数按值传递一个参数时，该函数的作用域内就已经复制了这个值。因此，这个值的改变，只会在函数内部反映出来
+		 */
+		var a = 5;
+		function increment(a) {
+		    a = ++a;
+		    console.log(a);
+		}
+
+		increment(a);   // 6
+		console.log(a);    // 5
+	}
+	{	
+		/**
+		 * 在JavaScript中，一切都是按值传递的。但当我们给函数传一个变量，而这个变量所指向的是一个对象（包括数组）时，这个 变量 就是对象的一个引用。
+		 * 通过这个变量来改变对象的属性值，是会从根本上改变这个对象的。
+		 * @DateTime    2018-01-19T17:12:39+0800
+		 * 当我们传递一个没有初始值的参数时，如数组或对象，会隐形地创建了一个变量，这个变量指向记忆中原对象所在的位置。
+		 * 这个变量随后被传递给了函数，在函数内部对这个变量进行修改将会影响到原对象。
+		 */
+		function foo(param){
+		    param.bar = 'new value';
+		}
+		obj = {
+		    bar : 'value'
+		}
+
+		console.log(obj.bar);   // value
+		foo(obj);
+		console.log(obj.bar);   // new value
+	}
+	{
+		function fn(){
+			let a = 0
+			return function (){
+				console.log(a)
+			}
+		}
+
+		var a = 1
+		let sub = fn()
+		sub()   /** 0 */
+	}
+}
+
+
+
+
+
+
 
 {
 	0b11111  /** 31 （二进制转为10进制）*/   31 .toString(2)       Number('0b11111')
