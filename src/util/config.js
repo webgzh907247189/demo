@@ -93,8 +93,7 @@
 
 
 
-
-
+/** 见 apptest.js */
 {
   {
     var obj = {  

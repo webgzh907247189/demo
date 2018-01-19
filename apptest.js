@@ -58,6 +58,9 @@ function test(arg){
 
 
 
+
+
+
 {
 	let obj = {name: 'sh',sex: '男',age: '19'}
 	Reflect.deleteProperty(obj,'name')		// Reflect.deleteProperty() 删除使用的是 -> 键名
@@ -99,6 +102,64 @@ function test(arg){
 
 	let result = pick({name: 'sh',sex: '男',age: '19'},'sex','age','name','aaa')
 	console.log(result)   // {sex: "男", age: "19"}
+}
+{	
+	let obj = {name: 'sh',sex: '男',age: '19'}
+	let o = JSON.parse(JSON.stringify(obj,['sex','age']))
+	console.log(o)
+}
+
+
+
+
+
+{
+	0b11111  /** 31 （二进制转为10进制）*/   31 .toString(2)       Number('0b11111')
+	0o26     /** 22 （八进制转为10进制） */  22 .toString(8)		 Number('0o26')
+	0x16     /** 22 （十六进制转为10进制）*/ 22 .toString(16)		 Number('0x16')
+
+
+	{	
+		/**
+		 *  $ 合并找0  | 合并找1  （如果对非数值应用位操作符，会先使用Number()函数将该值转换为一个数值（自动完成），然后再应用位操作。得到的结果将是一个数值。）
+		 */
+		// num1是1和0进行“按位与”操作后的返回值。1的二进制码简写为1，0的二进制码简写为0，根据上面的规则，第二个操作符数为0，结果是0
+		var num1 = 1 & 0;
+		console.log(num1); // 0 
+
+		// 第一个操作符数是字符串，按照前言里面的理论，对于非数值的操作符数，先使用Number()函数处理，结果返回NaN，NaN又会被当成0来处理。所以最终结果也是0
+		var num2 = 'string' & 1;
+		console.log(num2); // 0
+
+		// true是布尔类型值，同样使用Number()函数处理，处理后得到数值1，于是表达式就相当于“1 & 1” 进行位运算，当两个数值都为1的时候，结果返回1
+		var num3 = true & 1;
+		console.log(num3); // 1
+
+		// 23的二进制码是：...10111，5的二进制码是：...00101。然后每一位进行对齐处理，结合上面的规则，可以得出10111&00101的结果是：00101。00101就是5
+		var num6 = 23 & 5;
+		console.log(num6); // 5 
+
+		// 再加个例子：24的二进制码为...11000，7的二进制码为...00111，相同位置的两个数执行AND操作，结果发现结果是...00000。所以最终结果是0，你算对了吗？
+		var add1 = 24 & 7;
+		console.log(add1); // 0
+	}
+	{
+		// 第一个操作符数为undefined，第二个操作符数是false，均不是数值，所以都要先使用Number()函数处理，处理结果都是返回NaN，NaN又会被当成0处理，于是最终结果是0
+		var num4 = undefined | false;
+		console.log(num4); // 0
+
+		// 第一个操作符数相当于0，第二个操作符数相当于1，结合按位或的规则，最终结果是1
+		var num5 = undefined | true;
+		console.log(num5); // 1
+
+		// 23的二进制码是：...10111，5的二进制码是：...00101。然后每一位进行对齐处理，结合上面的规则，可以得出10111|00101的结果是：10111。10111就是23
+		var num7 = 23 | 5;
+		console.log(num7); // 23
+
+		// 再加个例子：24的二进制码为...11000，7的二进制码为...00111，相同位置的两个数执行AND操作，结果发现结果是...11111。所以最终结果是31，你算对了吗？
+		var add2 = 24 | 7;
+		console.log(add2); // 31
+	}
 }
 
 
