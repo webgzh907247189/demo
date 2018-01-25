@@ -43,7 +43,7 @@
  *
  * jq install报错 ？琪琪的脚手架???完整的移动端项目？?重复依赖的包
  *
- * setState()   co
+ * setState()   co&   
  */
 
 
