@@ -166,9 +166,10 @@ function test(arg){
 
 
 {
-	0b11111  /** 31 （二进制转为10进制）*/   31 .toString(2)       Number('0b11111')
-	0o26     /** 22 （八进制转为10进制） */  22 .toString(8)		 Number('0o26')
-	0x16     /** 22 （十六进制转为10进制）*/ 22 .toString(16)		 Number('0x16')
+
+	// 0b11111  /** 31 （二进制转为10进制）*/   31 .toString(2)       Number('0b11111')
+	// 0o26     /** 22 （八进制转为10进制） */  22 .toString(8)		 Number('0o26')
+	// 0x16     /** 22 （十六进制转为10进制）*/ 22 .toString(16)		 Number('0x16')
 
 
 	{	
