@@ -223,6 +223,13 @@ function test(arg){
 
 
 
+
+
+/**
+ * 每次调用 next 方法，会返回一个对象，表示当前阶段的信息（ value 属性和 done 属性）。
+ * value 属性是 yield 语句后面表达式的值，表示当前阶段的值；
+ * done 属性是一个布尔值，表示 Generator 函数是否执行完毕，即是否还有下一个阶段。<false: 没有执行完毕，true: 执行完毕>
+ */
 {
 	let draw = function (count){
 		// 抽奖业务逻辑
@@ -244,11 +251,13 @@ function test(arg){
 	document.body.appendChild(div)
 
 	document.getElementById('create-element-by-test').addEventListener('click',()=>{
+		/**
+		 * 调用Generator函数不会立即执行，而是返回遍历器对象。疲于手动执行遍历器对象
+		 */
 		let a = drawDes.next()
-		console.log(a)
+		console.log(a)   //{value: undefined, done: false or true}
 	},false)
 }
-
 
 
 {
@@ -260,6 +269,9 @@ function test(arg){
 		})
 	}
 
+	/**
+	 * 调用Generator函数不会立即执行，而是返回遍历器对象。疲于手动执行遍历器对象
+	 */
 	let pull = function(){
 		let gen = ajax()
 		let step = gen.next()
@@ -281,6 +293,12 @@ function test(arg){
 
 
 
+
+
+
+
+
+
 {
 	let classAddName = function(target,name,descriptor){
 		target.myName = 'classDescription'
@@ -289,7 +307,6 @@ function test(arg){
 
 	@classAddName
 	class A{
-
 	}
 
 	// 静态属性
