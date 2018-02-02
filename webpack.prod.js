@@ -15,10 +15,16 @@
  * extract-text-webpack-plugin https://segmentfault.com/q/1010000005031628    https://segmentfault.com/q/1010000008299770
  * git 回退到历史版本  git log命令查看所有的历史版本，获取某个历史版本的id    git reset --hard 139dcfaa558e3276b30b6
  *
+ * 见vue脚手架生成的配置
  * chunkHash     https://segmentfault.com/a/1190000012469443#articleHeader14       http://www.cnblogs.com/ihardcoder/p/5623411.html
  * chunkHash      hash在js和css中不实用，所以在项目中所有的js都准备用chunkHash,img、font中是没有chunkHash的，仍然需要用到hash
  * js和js引入的css的chunkhash是相同的,css是使用ExtractTextPlugin插件引入的，这时候可以使用到这个插件提供的contenthash
- * 使用chunkHash来操作css，css更改之后，打包出来的css的chunkHash没变，使得线上模板依然引用的是这个[chunkHash].css(因为原来的css还在缓存里面，间接使得更改的css没有生效) 
+ * 使用chunkHash来操作css，css更改之后，打包出来的css的chunkHash没变，使得线上模板依然引用的是这个[chunkHash].css(因为原来的css还在缓存里面，间接使得更改的css没有生效 -> bug) 
+ * 
+ * https://www.zhihu.com/question/20790576  (js、css文件中引用的资源路径，由于涉及到摘要信息，引用资源的摘要信息也会引起引用文件本身的内容改变，从而形成级联的摘要变化)
+ * 用文件的摘要信息来对资源文件进行重命名，把摘要信息放到资源文件发布路径中，这样，内容有修改的资源就变成了一个新的文件发布到线上，不会覆盖已有的资源文件。
+ * 上线过程中，先全量部署静态资源，再灰度部署页面
+ *
  * 
  * webpack.DefinePlugin()  https://zhuanlan.zhihu.com/p/30248068 (设置它，就可以忘记开发和发布构建的规则)
  * 代码分割(code spliting 异步加载《首屏需要的同步加载，首屏过后才需要的则按需加载(异步)》。不分割，静态资源可能出现串行加载。)   https://www.jianshu.com/p/547aa7b92d8c  http://www.css88.com/doc/webpack2/guides/code-splitting-require
