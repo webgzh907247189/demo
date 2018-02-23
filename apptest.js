@@ -64,7 +64,7 @@ function test(arg){
 {
 	let obj = {name: 'sh',sex: '男',age: '19'}
 	Reflect.deleteProperty(obj,'name')		// Reflect.deleteProperty() 删除使用的是 -> 键名
-	console.log(obj)
+	console.log(obj)    // {sex: '男',age: '19'}
 
 	delete obj.name                        // delete obj.name 删除使用的是 -> 键值
 }
@@ -106,8 +106,54 @@ function test(arg){
 {	
 	let obj = {name: 'sh',sex: '男',age: '19'}
 	let o = JSON.parse(JSON.stringify(obj,['sex','age']))
-	console.log(o)
+	console.log(o)  // {sex: '男',age: '19'}
 }
+{	
+	function b(){
+		let a = 'asdasvd'
+
+		// if(a.indexOf('v') !== -1){
+		if(~a.indexOf('v')){
+			console.log('11111')
+		}
+	}
+	b()
+
+	function pick(src){
+        let target = Object.create(null);
+        Array.from(arguments,(item,index)=>{
+        	if(index){
+        		target[item] = src[item]
+        	}
+        })
+        return target;
+    }
+    let user = {
+        name: 'ghostwu',
+        age: 22,
+        sex: 'man',
+    };
+    var obj = pick(user,'name','age');      //拷贝user对象的name和age属性
+    console.log(obj);                       //{name: "ghostwu", age: 22}
+}
+
+{	
+	/**
+	 * 不定参数修改之后，arguments并不会受到影响
+	 * @param       {...[type]}              keys [description]
+	 * @return      {[type]}                      [description]
+	 */
+	function show( ...keys ){
+        console.log( keys.length );      //3
+        console.log( arguments.length ); //3
+        keys[0] = 1000;
+        console.log( keys[0], keys[1], keys[2] );    // 1000,20,30
+        console.log( arguments[0], arguments[1], arguments[2] );   //10,20,30
+    }
+    show( 10, 20, 30 );
+}
+
+
 
 
 
