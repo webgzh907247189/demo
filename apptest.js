@@ -18,6 +18,18 @@ arrMap(arr)
 
 
 
+function a(num){
+	let obj = {
+		'A': 1,
+		'B': 2,
+	}[num]
+	return obj
+}
+
+let c = a('A')
+console.log(c)   // 1
+
+
 
 fetch('/api/post',{
 	 method: 'post',
