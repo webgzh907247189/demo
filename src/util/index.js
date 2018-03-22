@@ -7,6 +7,13 @@ function * objToArr(obj){
 }
 
 
+function getDownUrl(url,paraObj={}){
+    return Object.keys(paraObj).reduce((result,item)=>{
+        return result += paraObj[item] && `${item}=${encodeURIComponent(paraObj[item])}&` || ''
+    },`${url}?`).slice(0,-1)
+}
+
+
 function getLocationQuery(){
 	let search = window.location.search.substr(1)
 	let hash = window.location.hash.substr(1)
