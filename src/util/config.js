@@ -123,3 +123,64 @@
 }
 
 
+
+
+/**
+ * https://segmentfault.com/a/1190000013972464
+ */
+{
+  let object1 = { a:1, b:2,c:3 }
+  let object2 = { b:30, c:40, d:50}
+  let merged = {...object1,...object2} //spread and re-add into merged
+  console.log(merged) // {a: 1, b: 30, c: 40, d: 50}
+}
+
+{
+  let object1 = { a:1, b:2,c:3 }
+  let object2 = { b:30, c:40, d:50}
+  let merged = {...object2,...object1} //spread and re-add into merged
+  console.log(merged) // {a: 1, b: 2, c: 3, d: 50}
+}
+
+{
+  let cars = ['BMW','Benz', 'Benz', 'Tesla', 'BMW', 'Toyota'];
+  let carsObj = cars.reduce(function (obj, name) { 
+    obj[name] = obj[name] && ++obj[name] || 1
+    return obj
+  }, Object.create(null));
+  console.log(carsObj) // => { BMW: 2, Benz: 2, Tesla: 1, Toyota: 1 }
+}
+
+
+{
+  isParensBalanced('(())') // 0 <-- balanced
+  isParensBalanced('(asdfds)') //0 <-- balanced
+  isParensBalanced('(()') // 1 <-- not balanced
+  isParensBalanced(')(') // -1 <-- not balanced
+
+  function isParensBalanced(str){
+    return str.split('').reduce((result,item)=>{
+      // if(result < 0) { //matched ")" before "("
+      //   return result;
+      // } else if(item === '(') {
+      //   return ++result;
+      // } else if(item === ')') {
+      //   return --result;
+      // }  else { //matched some other char
+      //   return result;
+      // }
+      
+
+      if(result < 0){
+        return result
+      }
+
+      if(item === '(') {
+        ++result;
+      } else if(item === ')') {
+        --result;
+      }
+      return result
+    },0)
+  }
+}
