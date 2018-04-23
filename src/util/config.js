@@ -220,6 +220,66 @@
 
 
 {
+  function getArrRepeatIndex(arr,el){
+    let repeatIndex = []
+    let idx = arr.lastIndexOf(el)
+
+    while(idx !== -1){
+      repeatIndex = [...repeatIndex,idx]
+
+      if(idx > 0){
+        idx = arr.lastIndexOf(el,idx - 1)
+      }else{
+        idx = -1
+      }
+    }
+    return repeatIndex
+  }
+
+  let arr = ['a','b','a','c','a','d'];
+  getArrRepeatIndex(arr,'a')
+}
+
+{
+  function getArrRepeatIndex(arr,el){
+    let repeatIndex = []
+    let idx = arr.lastIndexOf(el)
+    
+    while(idx !== -1){
+      repeatIndex = [...repeatIndex,idx]
+      idx = idx > 0 ? arr.lastIndexOf(el,idx - 1) : -1
+    }
+    return repeatIndex
+  }
+
+  let arr = ['a','b','a','c','a','d'];
+  getArrRepeatIndex(arr,'a')
+}
+
+{
+  function getArrRepeatIndex(arr,el){
+    let idx = arr.lastIndexOf(el)
+    return arr.reduce((result,item)=>{
+      if(idx >= 0){
+        result = [...result,idx]
+      }
+      idx = idx > 0 ? arr.lastIndexOf(el,idx - 1) : -1
+      return result
+    },[])
+  }
+
+  let arr = ['a','b','a','c','a','d'];
+  getArrRepeatIndex(arr,'a')
+}
+
+
+
+
+
+
+
+
+{
   isParensBalanced('(())') // 0 <-- balanced
   isParensBalanced('(asdfds)') //0 <-- balanced
   isParensBalanced('(()') // 1 <-- not balanced
