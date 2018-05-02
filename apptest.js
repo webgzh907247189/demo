@@ -31,24 +31,49 @@ console.log(c)   // 1
 
 
 
-fetch('/api/post',{
-	 method: 'post',
-	 credentials: 'include',
-	 headers: {
-	 	'Accept': 'application/json, text/plain,*/*',
-	 	'Content-type': 'application/x-www-form-urlencoded'
-	 },
-	 body: JSON.stringify({a: 1,b: 2})
-})
-.then(function(res) {
-  // return res.text(); //转为字符串
-  return res.json();
-})
-.then(data => {
-		console.log('fetch测试',typeof(data))
-        console.log(data)
-    }
-)
+async function getDate(){
+	return await Promise.all([fetch('/api/post',{
+			method: 'post',
+			credentials: 'include',
+			headers: {
+				'Accept': 'application/json, text/plain,*/*',
+			 	'Content-type': 'application/x-www-form-urlencoded'
+			},
+			body: JSON.stringify({a: 1,b: 2})
+		}).then(function(res) {
+			return res.json();
+		})
+		.then(data => {
+				console.log('fetch测试',typeof(data))
+		        console.log(data)
+		        return data
+		    }
+		),fetch('/api/data',{
+			method: 'get',
+			credentials: 'include',
+			headers: {
+				'Accept': 'application/json, text/plain,*/*',
+			 	'Content-type': 'application/x-www-form-urlencoded'
+			}
+		}).then(function(res) {
+			return res.json();
+		})
+		.then(data => {
+				console.log('fetch测试',typeof(data))
+		        console.log(data)
+		        return data
+		    }
+		)])
+}
+
+
+async function getD(){
+	const [fetch1,fetch2] = await getDate()
+	console.log(fetch1,'fetch11111111111111111111',fetch2)
+}
+getD()
+
+
 
 
 
@@ -145,7 +170,7 @@ function test(arg){
         age: 22,
         sex: 'man',
     };
-    var obj = pick(user,'name','age');      //拷贝user对象的name和age属性
+    let obj = pick(user,'name','age');      //拷贝user对象的name和age属性
     console.log(obj);                       //{name: "ghostwu", age: 22}
 }
 
@@ -185,13 +210,13 @@ function test(arg){
 		console.log(a);    // 5
 	}
 	{	
-		*
+		/**
 		 * 在JavaScript中，一切都是按值传递的。但当我们给函数传一个变量，而这个变量所指向的是一个对象（包括数组）时，这个 变量 就是对象的一个引用。
 		 * 通过这个变量来改变对象的属性值，是会从根本上改变这个对象的。
 		 * @DateTime    2018-01-19T17:12:39+0800
 		 * 当我们传递一个没有初始值的参数时，如数组或对象，会隐形地创建了一个变量，这个变量指向记忆中原对象所在的位置。
 		 * 这个变量随后被传递给了函数，在函数内部对这个变量进行修改将会影响到原对象。
-		 
+		 */
 		function foo(param){
 		    param.bar = 'new value';
 		}
