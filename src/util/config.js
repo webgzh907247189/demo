@@ -150,6 +150,18 @@
   }, Object.create(null));
   console.log(carsObj) // => { BMW: 2, Benz: 2, Tesla: 1, Toyota: 1 }
 }
+{
+  let arr = [{id:1,name:'11'},{id:2,name:'22'},{id:3,name:'33'},{id:1,name:'44'}]
+  let obj = arr.reduce((result,item)=>{
+    result[item.id] = result[item.id] ? ++result[item.id] : 1
+    return result
+  },{})
+
+  let isRepeat = Object.keys(obj).some(function(item){
+    return obj[item] !== 1
+  })
+  console.log(isRepeat,obj)  // true {1: 2, 2: 1, 3: 1}
+}
 
 
 
