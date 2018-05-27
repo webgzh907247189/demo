@@ -106,6 +106,11 @@
     console.log(json, typeof json);   //{"name":"Shelock","class":1} string  
 
 
+    var obj = {name:'11',sex: '22'}
+    var o = _.pick(obj,'name')
+    console.log(obj,o)  //{name: "11", sex: "22"}, {name: "11"}
+    
+
     let obj1 = {name: '11', sex: '22'}
     Reflect.deleteProperty(obj1,'name')
     console.log(obj1)   // {sex: '22'}
