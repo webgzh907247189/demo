@@ -26,6 +26,20 @@ function getDownUrl(url,paraObj={}){
 
 
 
+{
+	let nestedArr = [1, 2, [3, 4, [5, 6]]];
+
+	function a(nestedArr){
+	    return nestedArr.reduce((result,item)=>{
+	        return result.concat(Array.isArray(item) ? a(item): item)
+	    },[])
+	}
+
+	a(nestedArr) //[1, 2, 3, 4, 5, 6]
+}
+
+
+
 function getLocationQuery(){
 	let search = window.location.search.substr(1)
 	let hash = window.location.hash.substr(1)
