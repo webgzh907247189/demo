@@ -14,6 +14,18 @@ function getDownUrl(url,paraObj={}){
 }
 
 
+
+{
+	let arr = [['name', 'zz'],['sex', '22'],['aa', '123123']]
+	let a = arr.reduce((result,item)=>{
+		return (result[item[0]] = item[1],result)
+	},{})
+
+	console.log(a)  //{name: "zz", sex: "22", aa: "123123"}
+}
+
+
+
 function getLocationQuery(){
 	let search = window.location.search.substr(1)
 	let hash = window.location.hash.substr(1)
