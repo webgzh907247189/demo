@@ -57,6 +57,14 @@
     console.log(resultObj)   //{caToken: "18446744071411467872", " _ga": "GA1.2.1263283024.1493135627", " _gat": "1"}
   }
 
+  {
+    let allcookies = "caToken=18446744071411467872; _ga=GA1.2.1263283024.1493135627; _gat=1";
+    let resultObj = allcookies.split(';').reduce((result,item)=>{
+      let [key,value] = item.split('=')
+      return result[key] = value, result
+    },Object.create(null))
+    console.log(resultObj)   //{caToken: "18446744071411467872", " _ga": "GA1.2.1263283024.1493135627", " _gat": "1"}
+  }
 }
 
 
