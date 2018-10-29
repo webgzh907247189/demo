@@ -169,7 +169,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
 
-        // new ExtractTextPlugin('styles.css'),
+        // new ExtractTextPlugin('styles.css'),  //重命名提取之后的css
         // extractCSS,
         // extractLESS,
 

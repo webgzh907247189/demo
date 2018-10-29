@@ -22,6 +22,7 @@ const EnsureTest = (props) => (
         require.ensure([], require => {
             cb(require('./test'));
         },'ensureTest');
+
     }}>
     {(Chat) => <Chat {...props}/>}
   </Bundle>
