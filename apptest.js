@@ -3,6 +3,23 @@ import attachFastClick from 'fastclick'
 import {objToArr} from 'util/index'
 import _ from 'lodash'
 import fetch from "isomorphic-fetch";
+// import atest1,{objTest,atest} from './testExport';
+// console.log(objTest,atest,'aaaaaaaaaaaaaaaaaaaaaaaaaa',atest1())
+
+
+
+
+
+
+
+import atest1,{test1} from './testExport';
+console.log(test1(),'aaaaaaaaaaaaaaaaaaaaaaaaaa',atest1())
+
+
+
+
+
+
 
 console.log(_.defaults({ 'a': 1 }, { 'a': 3, 'b': 2 }))
 
