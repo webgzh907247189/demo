@@ -36,7 +36,7 @@ function decrypt(encrypted, key){
   return decrypted;
 }
 
-let key = 'bz'
+let key = 'bzTest'
 
 
 let value = '123456!@#%QWERqwer，。'
