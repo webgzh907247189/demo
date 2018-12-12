@@ -1,18 +1,18 @@
-const crypto = require('crypto');
-// 解密
-function decipher(encrypted) {
-  const algorithm = 'rc4';
-  const key = 'hello';
-  let decrypted = '';
-  const decipher = crypto.createDecipher(algorithm, key);
-  decrypted += decipher.update(encrypted, 'hex', 'binary');
-  decrypted += decipher.final('binary');
+// const crypto = require('crypto');
+// // 解密
+// function decipher(encrypted) {
+//   const algorithm = 'rc4';
+//   const key = 'hello';
+//   let decrypted = '';
+//   const decipher = crypto.createDecipher(algorithm, key);
+//   decrypted += decipher.update(encrypted, 'hex', 'binary');
+//   decrypted += decipher.final('binary');
 
-    console.log(decrypted+'解密后的');
-  return decrypted;
-}
+//     console.log(decrypted+'解密后的');
+//   return decrypted;
+// }
 
-module.exports = decipher;
+// module.exports = decipher;
 
 
 
@@ -36,7 +36,7 @@ function decrypt(encrypted, key){
   return decrypted;
 }
 
-let key = 'bzTest'
+let key = 'bz'
 
 
 let value = '123456!@#%QWERqwer，。'
@@ -45,5 +45,5 @@ console.log(cryptoValue,'  11')
 
 //390cfe3e1ab272ed90889843cd46d5f08464b911fefd64793bfdf0820f1043248757cfc29a2a20ad42bacfb6b4b30f2d
 
-let value = decodeURIComponent(decrypt(cryptoValue,key))
-console.log(value,'  22')
+let value1 = decodeURIComponent(decrypt(cryptoValue,key))
+console.log(value1,'  22')
