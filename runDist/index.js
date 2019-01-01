@@ -34,6 +34,14 @@ app.get('/*',(req,res,next)=>{
 	res.render('detail',{title: '测试dist'})
 })
 
+app.get('/api1',(req,res,next)=>{
+	res.json({check: '1111!'})
+})
+
+app.get('/api1',(req,res,next)=>{
+	res.json({check: '2222!'})
+})
+
 
 
 app.set('port',process.env.port || 3000)
