@@ -117,6 +117,7 @@ module.exports = {
         },
         mainFiles: ['index','index.web'], //解析目录时要使用的文件名
         modules: [path.resolve(__dirname, "src"), "node_modules"], //如果你想要添加一个目录到模块搜索目录，此目录优先于 node_modules/ 搜索
+        // 针对Npm中的第三方模块优先采用jsnext:main中指向ES6模块化语法的文件
         mainFields: ["browser","main","jsnext:main", "module"]
     },
     module: {
